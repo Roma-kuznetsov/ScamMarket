@@ -1,16 +1,16 @@
 import React from "react"
 import InBar from "../InBar";
+import Paginator from "../Paginator";
 import ProductsList from "../ProductsList";
 import Sponsors from "../Sponsors";
 
-const TshitrPage = () =>{
+const TshitrPage = (props) =>{
     return(
         <>
         <InBar />
         <Sponsors />
-        <div style={{backgroudColor:"#282c34"}}>
-            <ProductsList />
-        </div>
+        <ProductsList body={props.body}  />
+        <Paginator />
         </>
     )
 }
