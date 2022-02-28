@@ -5,14 +5,14 @@ import FileServise from '../FileServise.js';
 class ProductsService {
     async create(prodItem, picture) {
         const fileName = FileServise.saveFile(picture)
-        const createdPost = await CardProducts.create({ ...prodItem, picture: fileName })
-        return createdPost;
+        const createdProd = await CardProducts.create({ ...prodItem, picture: fileName })
+        return createdProd;
     }
 
     async getAll(data) {
         const skiping = data.count * data.page
         //надо защитить limit 
-        const products = await CardProducts.find().skip(skiping - 5).limit(data.count);
+        const products = await CardProducts.find().skip(skiping - data.count).limit(data.count);
         console.log(skiping)
         return products
     }

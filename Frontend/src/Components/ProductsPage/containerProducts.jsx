@@ -2,17 +2,14 @@ import { connect } from 'react-redux';
 import TestApi from '../TestApi/TestApi';
 import React from 'react';
 import TshitrPage from './Tshirt/TshitrPage';
+import { getTovars } from "../../redux/ProductsReducer";
+import axios from 'axios';
 // контейнер для товаров футболки
 
 class ContainerProducts extends React.Component {
-    getLocation() {
-        let local = ""
-        return (
-            local = document.location.pathname
-        )
-    }
+
     componentDidMount() {
-        console.log(this.getLocation())
+        this.props.getTovars(16,2)
     }
     render() {
         return (
@@ -30,4 +27,4 @@ const mapStateToProps = function (state) {
     }
 }
 
-export default connect(mapStateToProps)(ContainerProducts);
+export default connect(mapStateToProps, { getTovars })(ContainerProducts);

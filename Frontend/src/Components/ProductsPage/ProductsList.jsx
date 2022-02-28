@@ -15,7 +15,7 @@ while (i < 17) {
 
 const ProductsList = (props) => {
 
-    const list = props.body.map(p => <ProductsItem price={p.price} image={p.image} brand={p.brand} key={p.id} />);
+    const list = props.body.map(p => <ProductsItem price={p.price} image={p.picture} brand={p.brand} key={p.id} />);
 
     return (
         <div style={{ paddingTop: "50px" }}>

@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import router from './Router.js';
 import fileUpload from 'express-fileupload';
+import cors from 'cors'
 
 const PORT = 3001;
 const DB_URL = `mongodb+srv://Romikr89:Romikrty2000@clusterscam.cwql4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
@@ -12,6 +13,7 @@ app.use(express.static('static'));
 app.use(express.json());
 app.use(fileUpload({}))
 app.use('/api',router)
+app.use(cors())
 
 
 async function startApp(){
