@@ -3,15 +3,21 @@ import { Container, Row, Col, Pagination } from "react-bootstrap";
 
 // display one brand
 const Paginator = (props) => {
-    let active = 1;
+    debugger
+    let active = props.currentPage
     let items = [];
-    for (let number = 1; number <= 5; number++) {
+    for (let number = 1; number <= props.pageCount; number++) {
         items.push(
-            <Pagination.Item key={number} active={number === active}>
+            <Pagination.Item key={number} active={number === active} onClick={(e) => { props.onPageChanged(number) }}>
                 {number}
             </Pagination.Item>,
         );
     }
+    /*const setPage = (number) => {
+        props.onPageChanged(number)
+        props.setCurrentPage(number)
+    }
+    */
     return (
         <Container>
             <Row>
