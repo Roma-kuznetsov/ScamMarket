@@ -1,10 +1,7 @@
 import React from "react"
 import { Container, Row } from "react-bootstrap";
-import ProductsItem from "./ProductsItem";
-import { Route, Routes} from 'react-router-dom';
-import { BsList } from "react-icons/bs";
+import ProductsItem from "./ProductsItem/ProductsItem";
 
-// переделать с появлением сервера или redux 
 let i = 1;
 let idProd = []
 while (i < 17) {
@@ -12,10 +9,12 @@ while (i < 17) {
     i++
 }
 
-
 const ProductsList = (props) => {
-
-    const list = props.body.map(p => <ProductsItem price={p.price} image={p.picture} brand={p.brand} key={p.id} />);
+    debugger
+    const list = props.body.map(p => <ProductsItem price={p.price} image={p.picture} 
+                                                    brand={p.brand} key={p.id} id={p._id}
+                                                    setItem={props.setItem}
+                                                    select={props.select} />);
 
     return (
         <div style={{ paddingTop: "50px" }}>

@@ -6,8 +6,8 @@ import corzinaReducer from "./corzinaReducers";
 
 let reducers = combineReducers({
     auth:authReducer,
-    products : productsReducer,
-    corzina: corzinaReducer
+    products:productsReducer,
+    corzina:corzinaReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

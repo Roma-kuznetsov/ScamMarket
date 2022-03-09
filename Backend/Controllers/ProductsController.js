@@ -18,15 +18,10 @@ class ProductsController{
             res.status(500).json(e.message)
         }
     }
-    async getCount(req,res){
-        db.products.countDocuments()
-        const count = await db.products.count()
-        return res.json(count)
-    }
     async getOne (req,res){
         try{
-            const prodItem = await ProductsService.getOne(req.params.id)
-            return res.json(prodItem)
+            const products = await ProductsService.getOne(req.params.id)
+            return res.json(products)
         }catch(e){
             res.status(500).json(e.message)
         }

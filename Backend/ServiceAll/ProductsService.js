@@ -11,18 +11,15 @@ class ProductsService {
 
     async getAll(data) {
         const skiping = data.count * data.page
-        //надо защитить limit 
         const products = await CardProducts.find().skip(skiping - data.count).limit(data.count);
         console.log(skiping)
         return products
     }
 
     async getOne(id) {
-        if (!id) {
-            throw new Error('id not found')
-        }
-        const post = await CardProducts.findById(id)
-        return post
+        const products = await CardProducts.findById(id)
+        console.log(id)
+        return products
     }
 
     async update(post) {

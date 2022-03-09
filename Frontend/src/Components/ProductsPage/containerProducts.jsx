@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
-import TestApi from '../TestApi/TestApi';
 import React from 'react';
 import TshitrPage from './Tshirt/TshitrPage';
-import { getTovars, setCurrentPage } from "../../redux/ProductsReducer";
-import axios from 'axios';
+import { getTovars, setCurrentPage,setItem } from "../../redux/ProductsReducer";
+
 // контейнер для товаров футболки
 
 class ContainerProducts extends React.Component {
@@ -11,9 +10,15 @@ class ContainerProducts extends React.Component {
     componentDidMount() {
         this.props.getTovars(this.props.currentPage, this.props.pageSize)
     }
+
     onPageChanged = (pageNumber) => {
         this.props.getTovars(pageNumber, this.props.pageSize);
     }
+
+    select = (id) =>{
+        this.props.setItem(id)
+    }
+
     render() {
         return (
             <div>
@@ -22,7 +27,10 @@ class ContainerProducts extends React.Component {
                     totalItemsCount={this.props.totalItemsCount}
                     pageSize={this.props.pageSize}
                     currentPage={this.props.currentPage}
-                    setCurrentPage={this.props.setCurrentPage} />
+                    setCurrentPage={this.props.setCurrentPage}
+                    setItem={this.props.setItem}
+                    selectedItem={this.props.selectedItem}
+                    select = {this.select}/>
                     : <div>test</div>}
             </div>
         )
@@ -35,8 +43,10 @@ const mapStateToProps = function (state) {
         body: state.products.body,
         currentPage: state.products.currentPage,
         pageSize: state.products.pageSize,
-        totalItemsCount: state.products.totalItemsCount
+        totalItemsCount: state.products.totalItemsCount,
+        selectedItem:state.products.selectedItem
     }
 }
 
-export default connect(mapStateToProps, { getTovars, setCurrentPage })(ContainerProducts);
+
+export default connect(mapStateToProps,{ getTovars, setCurrentPage,setItem })(ContainerProducts);

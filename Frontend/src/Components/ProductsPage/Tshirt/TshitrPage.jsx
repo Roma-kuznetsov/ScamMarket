@@ -5,13 +5,13 @@ import ProductsList from "../ProductsList";
 import Sponsors from "../Sponsors";
 
 const TshitrPage = (props) =>{
-
+    debugger
     const pageCount = Math.ceil(props.totalItemsCount / props.pageSize)
     return(
         <>
         <InBar />
         <Sponsors />
-        <ProductsList body={props.body}  />
+        <ProductsList body={props.body} setItem={props.setItem} selectedItem={props.selectedItem} select={props.select} />
         <Paginator onPageChanged={props.onPageChanged} pageCount={pageCount} currentPage={props.currentPage} setCurrentPage={props.setCurrentPage}/>
         </>
     )
