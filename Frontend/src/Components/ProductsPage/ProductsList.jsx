@@ -12,7 +12,7 @@ while (i < 17) {
 const ProductsList = (props) => {
     debugger
     const list = props.body.map(p => <ProductsItem price={p.price} image={p.picture} 
-                                                    brand={p.brand} key={p.id} id={p._id}
+                                                    brand={p.brand} key={p._id} id={p._id}
                                                     setItem={props.setItem}
                                                     select={props.select} />);
 

@@ -10,7 +10,6 @@ class OneProdPageContainer extends React.Component {
     componentDidMount() {
         const urlStr = window.location.pathname
         this.props.setItem(urlStr)
-        console.log(urlStr)
     }
 
 
@@ -25,7 +24,6 @@ class OneProdPageContainer extends React.Component {
 
 
 const mapStateToProps = function (state) {
-    debugger
     return {
         selectedItem: state.products.selectedItem
     }

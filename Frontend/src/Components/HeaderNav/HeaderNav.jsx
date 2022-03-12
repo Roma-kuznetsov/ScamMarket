@@ -70,11 +70,6 @@ export default function HeaderNav(props) {
                         : <Button variant="light" onClick={setReg}>Создать аккаунт</Button>}
                 </Modal.Header>
                 {reg ? <RegForm /> : <LoginForm />}
-                <Modal.Footer>
-                    <Button variant="primary" >
-                        {reg ? <div>Разегистрироваться</div> : <div>Войти</div>}
-                    </Button>
-                </Modal.Footer>
             </Modal>
         </>
     );

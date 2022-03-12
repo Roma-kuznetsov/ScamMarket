@@ -4,10 +4,6 @@ import { NavLink } from "react-router-dom";
 
 // нужно будет вынести в отдельную компоненты и замапить 
 const ProductsItem = (props) => {
-    debugger
-    const yseSetItem = (id) =>{
-        props.select(id)
-    }
 
     return (
         <>
@@ -17,15 +13,12 @@ const ProductsItem = (props) => {
                     <Card.Body>
                         <Card.Title>{props.price}$</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">{props.brand}</Card.Subtitle>
-                        <Button variant="primary" href={`/products/${props.id}`}>Купить</Button>
+                        <NavLink to={`/products/${props.id}`}><Button variant="primary">Купить</Button></NavLink>
                     </Card.Body>
                 </Card>
             </Col>
         </>
     )
 }
-//onClick={() => { yseSetItem(props.id) }}
-//href={'/short/'+ props.id}
+
 export default ProductsItem;
-//onClick={props.setItem(props.id)}
-//{props.brand}

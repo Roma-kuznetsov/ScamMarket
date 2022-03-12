@@ -1,6 +1,5 @@
 import React from "react";
 import {Container,Row,Col } from 'react-bootstrap';
-import * as axios from "axios"
 
 const Corzina = () =>{
     return(
