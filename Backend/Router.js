@@ -1,6 +1,7 @@
 import { Router } from "express";
 import PostController from "./Controllers/PostController.js";
 import ProductsController from "./Controllers/ProductsController.js";
+import UserController from "./Controllers/UserController.js";
 
 const router = new Router()
 //post CRUD
@@ -15,6 +16,9 @@ router.get('/productstshirt', ProductsController.getAll)
 router.get('/products/:id', ProductsController.getOne)
 router.put('/products', ProductsController.update)
 router.delete('/products/:id', ProductsController.delete)
+//userData 
+router.post('/createuser',UserController.create)
+router.put('/createuser', UserController.update)
 
 
 export default router;

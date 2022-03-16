@@ -1,11 +1,9 @@
 import Post from '../Schem/Post.js'
-import FileServise from '../FileServise.js';
 
 
 class PostServise {
-    async create(post, picture) {
-        const fileName = FileServise.saveFile(picture)
-        const createdPost = await Post.create({ ...post, picture: fileName })
+    async create(post) {
+        const createdPost = await Post.create(post)
         return createdPost;
     }
 

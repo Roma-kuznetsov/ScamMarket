@@ -3,7 +3,7 @@ import PostServese from "../ServiceAll/PostServese.js";
 class PostController {
     async create(req, res) {
         try {
-            const post = await PostServese.create(req.body, req.files.picture)
+            const post = await PostServese.create(req.body)
             res.json(post)
         } catch (e) {
             res.status(500).json(e.message)

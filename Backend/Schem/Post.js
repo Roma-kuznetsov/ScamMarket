@@ -4,6 +4,7 @@ const Post = new mongoose.Schema({
     author:{type:String,required:true},
     title:{type:String,required:true},
     content:{type:String,required:true},
+    array:[{type:String}],
     picture:{type:String}
 })
 
