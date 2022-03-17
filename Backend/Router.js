@@ -18,7 +18,7 @@ router.put('/products', ProductsController.update)
 router.delete('/products/:id', ProductsController.delete)
 //userData 
 router.post('/createuser',UserController.create)
-router.put('/createuser', UserController.update)
+router.post('/login', UserController.login)
 
 
 export default router;

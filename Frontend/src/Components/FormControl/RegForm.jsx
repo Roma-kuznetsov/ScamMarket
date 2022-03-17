@@ -3,9 +3,9 @@ import { Modal, Button, Form } from "react-bootstrap";
 import * as yup from "yup";
 import { Formik } from 'formik';
 import FormTextField from "./FormTextField";
+import { auth } from "../../api";
 
 const RegForm = () => {
-    debugger
     const schema = yup.object().shape({
         email: yup.string().required()
             .min(5, 'Минимальная длина 5 символов')
@@ -30,14 +30,10 @@ const RegForm = () => {
                     password: '',
                     passwordValid: '',
                     name: '',
-                    cart: [],
-                    like: [],
-                    history: []
                 }}
                 validationSchema={schema}
                 onSubmit={values => {
-                    alert(JSON.stringify(values, null, 2));
-
+                    auth(values.email,values.password,values.name)
                 }}
             >
                 {({ handleSubmit, isSubmitting, isValid, dirty }) => (
@@ -67,7 +63,7 @@ const RegForm = () => {
                             name="name" />
                         <Modal.Footer>
                             <Button
-                                disabled={!isValid || !dirty || isSubmitting}
+                                disabled={!isValid || !dirty }
                                 as="input"
                                 type="submit"
                                 value="Submit"

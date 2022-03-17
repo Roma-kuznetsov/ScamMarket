@@ -1,21 +1,33 @@
+import axios from "axios"
+
 
 export const productsAPI = {
     getTShirt(currentPage = 1, pageSize = 16) {
-        debugger
         return fetch(`/api/productstshirt?count=${pageSize}&page=${currentPage}`)
-        .then( response =>  response.json())
-        .then( response => response)
+            .then(response => response.json())
+            .then(response => response)
     },
 
-    // создать гетОне на бэке
     getOneTShirt(itemId) {
-        debugger
-        return fetch (`/api${itemId}`)
-        .then( response =>  response.json())
-        .then( response => response)
+        return fetch(`/api${itemId}`)
+            .then(response => response.json())
+            .then(response => response)
     }
 }
 
+export const auth = async (email,password,name) =>{
+    try{
+        const response = await axios.post("http://localhost:3001/api/createuser",{
+            email,
+            password,
+            name
+        })
+        console.log(response.data.message)
+        alert(response.data.message)
+        alert(response.data)
+    }catch(e){
+        alert(e.response.data.message)
+    }
 
-//return instance.get(`productstshirt?count=${pageSize}&page=${currentPage}`)
-            //.then(response => response.data)
+
+}

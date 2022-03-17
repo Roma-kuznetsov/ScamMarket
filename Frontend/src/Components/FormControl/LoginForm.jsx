@@ -1,23 +1,44 @@
 import React from "react";
-import { Modal, Form} from "react-bootstrap";
+import { Modal, Form, Button } from "react-bootstrap";
+import { Formik } from 'formik';
+import FormTextField from "./FormTextField";
 
 const LoginForm = () => {
     return (
         <Modal.Body>
-            <Form>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
-                </Form.Group>
+            <Formik
+                initialValues={{
+                    email: '',
+                    password: '',
+                }}
+                onSubmit={values => {
+                    console.log(values)
+                }}
+            >
+                {({ handleSubmit, isValid, dirty }) => (
+                    <Form onSubmit={handleSubmit}>
+                        <FormTextField
+                            controlId="email"
+                            label="Email"
+                            type="text"
+                            name="email" />
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Запомнить меня" />
-                </Form.Group>
-            </Form>
+                        <FormTextField
+                            controlId="password"
+                            label="Придумайте пароль"
+                            type="password"
+                            name="password" />
+                        <Modal.Footer>
+                            <Button
+                                disabled={!isValid || !dirty}
+                                as="input"
+                                type="submit"
+                                value="Submit"
+                            />
+                        </Modal.Footer>
+                    </Form>
+                )}
+            </Formik>
         </Modal.Body>
     )
 }
