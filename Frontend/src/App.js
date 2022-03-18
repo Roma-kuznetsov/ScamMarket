@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import Corzina from './Components/Corzina/Corzina';
 import Footer2 from './Components/Footer/Footer2';
@@ -9,10 +9,25 @@ import TshitrPage from './Components/ProductsPage/Tshirt/TshitrPage';
 import sweat from './images/sweatshirt.jpg'
 import ContainerProducts from './Components/ProductsPage/containerProducts';
 import OneProdPageContainer from './Components/ProductsPage/OneProdPage/OneProdPageContainer';
+import { useDispatch } from 'react-redux';
+import { autoAuth } from './api';
+
+
+
+
 
 
 
 const App = () => {
+
+
+    const dispatch = useDispatch()
+    useEffect(()=>{
+        dispatch(autoAuth())
+    },[])
+    
+
+
     return (
         <BrowserRouter>  
             <HeaderNav />    

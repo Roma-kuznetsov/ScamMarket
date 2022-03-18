@@ -4,26 +4,29 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 
+
 class UserService {
     //work
     async create(userData) {
-        const { email, password, name } = userData
-        const candidate = await regForm.findOne({ email })
+        const { email, password, name } = userData // получаем нужные данные из req
+        const candidate = await regForm.findOne({ email }) // ищем емаил в бд 
+        //если емаил уже есть в бд
         if (candidate) {
             return {
-                status:301,
-                message:`Пользователь ${email} уже существует`
+                message:`Пользователь ${email} уже зарегистрирован`,
+                resaultCode:1
             }
         }
-        const hashPassword = await bcrypt.hash(password, 2)
-        const user = new regForm({ email, password: hashPassword, name })
-        await user.save()
+        // все хорошо сохраняем в бд
+        const hashPassword = await bcrypt.hash(password, 2) // шифруем пароль
+        const user = new regForm({ email, password: hashPassword, name }) // передаем в схему обязательные поля
+        await user.save() // сохраняем в бд
         return {
-            email:user.email,
+            email:user.email, 
             name: user.name,
             cart:user.cart,
-            like:user.like
-
+            like:user.like,
+            resaultCode:0
         };
     }
 
@@ -48,9 +51,9 @@ class UserService {
                 like:user.like
             }
         }
-
-
     }
+
+
     ///////
     async getAll(data) {
         const skiping = data.count * data.page

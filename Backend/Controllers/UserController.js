@@ -9,11 +9,7 @@ class UserController {
     async create(req, res) {
         try {
             const userData = await UserService.create(req.body)
-            if(userData.status === 301){
-                res.status(userData.status).json({message:"Такой пользователь уже существует"})
-            }else{
-                res.status(200).json(userData)
-            }
+            res.status(200).json(userData)
         } catch (e) {
             res.status(500).json(e.message)
         }
@@ -24,6 +20,15 @@ class UserController {
             const loginData = await UserService.login(req.body)
             res.json(loginData)
         } catch (e) {
+            res.status(500).json(e.message)
+        }
+    }
+
+    async autoAuth(req,res){
+        try{
+            const autoAuth = await UserService.autoAuth(req.body)
+            res.json(autoAuth)
+        }catch(e){
             res.status(500).json(e.message)
         }
     }

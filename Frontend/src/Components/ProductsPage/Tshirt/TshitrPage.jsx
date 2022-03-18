@@ -5,7 +5,6 @@ import ProductsList from "../ProductsList";
 import Sponsors from "../Sponsors";
 
 const TshitrPage = (props) =>{
-    debugger
     const pageCount = Math.ceil(props.totalItemsCount / props.pageSize)
     return(
         <>

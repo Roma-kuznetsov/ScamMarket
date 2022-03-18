@@ -2,8 +2,14 @@ import React from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import { Formik } from 'formik';
 import FormTextField from "./FormTextField";
+import { autoAuth, login } from "../../api";
+import {useDispatch} from 'react-redux'
+
 
 const LoginForm = () => {
+
+    const dispatch = useDispatch()
+
     return (
         <Modal.Body>
             <Formik
@@ -12,6 +18,7 @@ const LoginForm = () => {
                     password: '',
                 }}
                 onSubmit={values => {
+                    dispatch(login(values.email,values.password))
                     console.log(values)
                 }}
             >
@@ -33,7 +40,11 @@ const LoginForm = () => {
                                 disabled={!isValid || !dirty}
                                 as="input"
                                 type="submit"
-                                value="Submit"
+                                value="Войти"
+                            />
+                            <Button
+                                onClick={()=>{dispatch(autoAuth())}}
+                                value="проверка"
                             />
                         </Modal.Footer>
                     </Form>
