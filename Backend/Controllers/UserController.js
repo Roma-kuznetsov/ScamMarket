@@ -26,7 +26,7 @@ class UserController {
 
     async autoAuth(req,res){
         try{
-            const autoAuth = await UserService.autoAuth(req.body)
+            const autoAuth = await UserService.autoAuth(req)
             res.json(autoAuth)
         }catch(e){
             res.status(500).json(e.message)

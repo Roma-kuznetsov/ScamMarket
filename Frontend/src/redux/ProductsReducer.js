@@ -1,7 +1,7 @@
 
 import { productsAPI } from '../api';
 
-const SET_USERS = 'SET_USERS';
+const SET_ITEMS = 'SET_ITEMS';
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_ITEM = 'SET_ITEM'
 
@@ -15,7 +15,7 @@ let initialState = {
 
 const productsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_USERS: {
+        case SET_ITEMS: {
             return {
                 ...state,
                 body: [...action.body]
@@ -39,7 +39,7 @@ const productsReducer = (state = initialState, action) => {
 }
 
 
-export const setTovars = (body) => ({ type: SET_USERS, body })
+export const setTovars = (body) => ({ type: SET_ITEMS, body })
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
 export const setItemCreator = (data) => ({ type: SET_ITEM, data })
 

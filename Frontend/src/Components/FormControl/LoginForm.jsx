@@ -4,10 +4,10 @@ import { Formik } from 'formik';
 import FormTextField from "./FormTextField";
 import { autoAuth, login } from "../../api";
 import {useDispatch} from 'react-redux'
+import { loginThunk } from "../../redux/authReducer";
 
 
 const LoginForm = () => {
-
     const dispatch = useDispatch()
 
     return (
@@ -18,7 +18,7 @@ const LoginForm = () => {
                     password: '',
                 }}
                 onSubmit={values => {
-                    dispatch(login(values.email,values.password))
+                    dispatch(loginThunk(values.email,values.password))
                     console.log(values)
                 }}
             >
@@ -41,10 +41,6 @@ const LoginForm = () => {
                                 as="input"
                                 type="submit"
                                 value="Войти"
-                            />
-                            <Button
-                                onClick={()=>{dispatch(autoAuth())}}
-                                value="проверка"
                             />
                         </Modal.Footer>
                     </Form>

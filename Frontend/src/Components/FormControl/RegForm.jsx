@@ -3,9 +3,13 @@ import { Modal, Button, Form } from "react-bootstrap";
 import * as yup from "yup";
 import { Formik } from 'formik';
 import FormTextField from "./FormTextField";
+import { authThank } from "../../redux/authReducer";
 import { auth } from "../../api";
+import { useDispatch } from "react-redux";
+
 
 const RegForm = () => {
+
     const schema = yup.object().shape({
         email: yup.string().required()
             .min(5, 'Минимальная длина 5 символов')
@@ -22,6 +26,8 @@ const RegForm = () => {
             .max(40, 'Максимальная длина 40 символов')
     });
 
+    const dispatch = useDispatch();
+
     return (
         <Modal.Body>
             <Formik
@@ -33,7 +39,8 @@ const RegForm = () => {
                 }}
                 validationSchema={schema}
                 onSubmit={values => {
-                    auth(values.email, values.password, values.name)
+                    debugger
+                    dispatch(authThank(values.email, values.password, values.name))
                 }}
             >
                 {({ handleSubmit, isSubmitting, isValid, dirty }) => (

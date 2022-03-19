@@ -23,9 +23,7 @@ class UserService {
         await user.save() // сохраняем в бд
         return {
             email:user.email, 
-            name: user.name,
-            cart:user.cart,
-            like:user.like,
+            password:userData.password,
             resaultCode:0
         };
     }
@@ -34,11 +32,17 @@ class UserService {
         const { email, password } = loginData
         const user = await regForm.findOne({ email })
         if (!user) {
-            return `User ${email} not found`
+            return{
+                message:`Пользователь ${email} не найден`,
+                resaultCode:1
+            } 
         }
         const isPassValid = bcrypt.compareSync(password, user.password)
         if (!isPassValid) {
-            return "Invalid password"
+            return{
+                message:`Неверный пароль`,
+                resaultCode:1
+            } 
         }
         const token = jwt.sign({id:user.id},"bla_bla",{expiresIn:"48h"})
         return{
@@ -53,7 +57,25 @@ class UserService {
         }
     }
 
-
+    async autoAuth (data){
+        try {
+            const user = await regForm.findOne({ _id: data.user.id }) // ищем емаил пользователя в бд
+            const token = jwt.sign({ id: user.id }, "bla_bla", { expiresIn: "48h" })// формируем новый токен
+            return {  // возвращаем токен и необходирую информацию
+                resaultCode:0,
+                token,
+                user: {
+                    id: user.id,
+                    email: user.email,
+                    name: user.name,
+                    cart: user.cart,
+                    like: user.like
+                }
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
     ///////
     async getAll(data) {
         const skiping = data.count * data.page

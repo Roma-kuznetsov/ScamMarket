@@ -16,53 +16,21 @@ export const productsAPI = {
     }
 }
 
-export const auth = async (email, password, name) => {
-    const response = await axios.post("http://localhost:3001/api/createuser", {
-        email,
-        password,
-        name
-    })
-    if (response.data.resaultCode === 0) {
-        alert("Успешная регистрация")
-        console.log(response.data)
-    } else {
-        alert(response.data.message)
+export const authAPI = {
+    authReg(email, password, name) {
+        debugger
+        return axios.post("http://localhost:3001/api/createuser", { email, password, name })
+    },
+    login(email, password) {
+        debugger
+        return axios.post("http://localhost:3001/api/login", { email, password })
+    },
+    autoAuth() {
+        debugger
+        return axios.get("http://localhost:3001/api/autoAuth",
+            { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+        )
     }
 }
 
-export const login = (email, password) => {
-    debugger
-    return async dispatch => {
-        const response = await axios.post("http://localhost:3001/api/login", {
-            email,
-            password
-        })
-        dispatch(setUser(response.data.user))
-        localStorage.setItem('token', response.data.token)
-        console.log(response.data)
-        alert(response.data.message)
-        alert(localStorage.getItem('token'))
-    }
 
-}
-
-export const autoAuth = () => {
-    return async dispatch => {
-        try {
-            debugger
-            const response = await axios.get("http://localhost:3001/api/autoAuth",
-                { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
-            )
-            dispatch(setUser(response.data.user))
-            localStorage.setItem('token', response.data.token)
-            console.log('1111')
-
-        } catch (e) {
-            debugger
-            localStorage.removeItem('token')
-            console.log("block catch")
-            console.log(e.response.data.message)
-        }
-    }
-
-}

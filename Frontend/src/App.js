@@ -10,7 +10,7 @@ import sweat from './images/sweatshirt.jpg'
 import ContainerProducts from './Components/ProductsPage/containerProducts';
 import OneProdPageContainer from './Components/ProductsPage/OneProdPage/OneProdPageContainer';
 import { useDispatch } from 'react-redux';
-import { autoAuth } from './api';
+import { autoAuthThunk } from './redux/authReducer';
 
 
 
@@ -19,11 +19,11 @@ import { autoAuth } from './api';
 
 
 const App = () => {
-
-
+    
     const dispatch = useDispatch()
+
     useEffect(()=>{
-        dispatch(autoAuth())
+        dispatch(autoAuthThunk())
     },[])
     
 

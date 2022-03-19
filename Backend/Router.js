@@ -22,26 +22,8 @@ router.delete('/products/:id', ProductsController.delete)
 //userData 
 router.post('/createuser', UserController.create)
 router.post('/login', UserController.login)
-router.get('/autoAuth', authMiddleware,
-    async (req, res) => {
-        try {
-            const user = await regForm.findOne({ _id: req.user.id })
-            const token = jwt.sign({ id: user.id }, "bla_bla", { expiresIn: "48h" })
-            return res.json({
-                token,
-                user: {
-                    id: user.id,
-                    email: user.email,
-                    name: user.name,
-                    cart: user.cart,
-                    like: user.like
-                }
-            })
-        } catch (e) {
-            console.log(e)
-        }
-    }
-)
+router.get('/autoAuth', authMiddleware,UserController.autoAuth)
+
 
 
 export default router;
