@@ -1,0 +1,14 @@
+.accountLink{
+    color:darkgray;
+    text-decoration: none;
+    margin-top: 50px;
+}
+.accountLink:hover{
+    color:gainsboro
+}
+.cursor{
+    cursor: pointer;
+}
+.otherLink{
+    text-decoration: none;
+}

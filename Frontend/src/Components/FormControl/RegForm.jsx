@@ -8,7 +8,7 @@ import { auth } from "../../api";
 import { useDispatch } from "react-redux";
 
 
-const RegForm = () => {
+const RegForm = (props) => {
 
     const schema = yup.object().shape({
         email: yup.string().required()
@@ -29,7 +29,7 @@ const RegForm = () => {
     const dispatch = useDispatch();
 
     return (
-        <Modal.Body>
+        <>
             <Formik
                 initialValues={{
                     email: '',
@@ -39,51 +39,37 @@ const RegForm = () => {
                 }}
                 validationSchema={schema}
                 onSubmit={values => {
-                    debugger
                     dispatch(authThank(values.email, values.password, values.name))
                 }}
             >
-                {({ handleSubmit, isSubmitting, isValid, dirty }) => (
+                {({ handleSubmit, isValid, dirty }) => (
 
                     <Form onSubmit={handleSubmit}>
                         <Modal.Body>
-                            <FormTextField
-                                controlId="email"
-                                label="Email"
-                                type="text"
-                                name="email" />
+                            {/*Field block */}
+                            <FormTextField controlId="email" label="Email"
+                                type="text" name="email" />
 
-                            <FormTextField
-                                controlId="password"
-                                label="Придумайте пароль"
-                                type="password"
-                                name="password" />
+                            <FormTextField controlId="password" label="Придумайте пароль"
+                                type="password" name="password" />
 
-                            <FormTextField
-                                controlId="passwordValid"
-                                label="Повторите пароль"
-                                type="password"
-                                name="passwordValid" />
+                            <FormTextField controlId="passwordValid" label="Повторите пароль"
+                                type="password" name="passwordValid" />
 
-                            <FormTextField
-                                controlId="name"
-                                label="Имя в личном кабинете"
-                                type="text"
-                                name="name" />
-                            <p style={{color:"red"}}>Modal body text goes here.</p>
+                            <FormTextField controlId="name" label="Имя в личном кабинете"
+                                type="text" name="name" />
+
+                            {/* errorMessage applay */}
+                            <p style={{ color: "red" }}>{props.errorMessage}</p>
                         </Modal.Body>
+
                         <Modal.Footer>
-                            <Button
-                                disabled={!isValid || !dirty}
-                                as="input"
-                                type="submit"
-                                value="Submit"
-                            />
+                            <Button disabled={!isValid || !dirty} type="submit" >Зарегистрироваться</Button>
                         </Modal.Footer>
                     </Form>
                 )}
             </Formik>
-        </Modal.Body>
+        </>
     )
 }
 export default RegForm;

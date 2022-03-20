@@ -46,6 +46,7 @@ class UserService {
         }
         const token = jwt.sign({id:user.id},"bla_bla",{expiresIn:"48h"})
         return{
+            resaultCode:0,
             token,
             user:{
                 id:user.id,

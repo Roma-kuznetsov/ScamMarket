@@ -1,36 +1,23 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import Corzina from './Components/Corzina/Corzina';
 import Footer2 from './Components/Footer/Footer2';
-import HeaderNav from './Components/HeaderNav/HeaderNav';
 import Home from './Components/Home/Home';
 import TshitrPage from './Components/ProductsPage/Tshirt/TshitrPage';
 import sweat from './images/sweatshirt.jpg'
 import ContainerProducts from './Components/ProductsPage/containerProducts';
 import OneProdPageContainer from './Components/ProductsPage/OneProdPage/OneProdPageContainer';
-import { useDispatch } from 'react-redux';
-import { autoAuthThunk } from './redux/authReducer';
-
-
-
-
+import HeaderContainer from './Components/HeaderNav/HeaderContainer';
+import AccountContainer from './Components/Account/AccountContainer';
 
 
 
 const App = () => {
-    
-    const dispatch = useDispatch()
-
-    useEffect(()=>{
-        dispatch(autoAuthThunk())
-    },[])
-    
-
 
     return (
         <BrowserRouter>  
-            <HeaderNav />    
+            <HeaderContainer />   {/* auto login with token */} 
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
@@ -39,6 +26,7 @@ const App = () => {
                 <Route path="/corzina" element={<Corzina />} />
                 <Route path="/test" element={<ContainerProducts />} />
                 <Route path="/products/:id" element={<OneProdPageContainer />} />
+                <Route path ="/account" element={<AccountContainer/>}/>
             </Routes>
             <Footer2 />
         </BrowserRouter>
@@ -46,7 +34,4 @@ const App = () => {
 }
 
 export default App;
-
-//<Route path="*" element={} /> not found
-
 

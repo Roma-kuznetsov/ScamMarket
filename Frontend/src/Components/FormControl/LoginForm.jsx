@@ -2,51 +2,44 @@ import React from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import { Formik } from 'formik';
 import FormTextField from "./FormTextField";
-import { autoAuth, login } from "../../api";
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { loginThunk } from "../../redux/authReducer";
 
 
-const LoginForm = () => {
+const LoginForm = (props) => {
     const dispatch = useDispatch()
 
     return (
-        <Modal.Body>
+        <>
             <Formik
                 initialValues={{
                     email: '',
                     password: '',
                 }}
                 onSubmit={values => {
-                    dispatch(loginThunk(values.email,values.password))
+                    dispatch(loginThunk(values.email, values.password))
                     console.log(values)
                 }}
             >
                 {({ handleSubmit, isValid, dirty }) => (
                     <Form onSubmit={handleSubmit}>
-                        <FormTextField
-                            controlId="email"
-                            label="Email"
-                            type="text"
-                            name="email" />
+                        {/*Field block */}
+                        <FormTextField controlId="email" label="Email"
+                            type="text" name="email" />
 
                         <FormTextField
-                            controlId="password"
-                            label="Придумайте пароль"
-                            type="password"
-                            name="password" />
+                            controlId="password" label="Придумайте пароль"
+                            type="password" name="password" />
+                        {/* errorMessage applay */}
+                        <p style={{ color: "red" }}>{props.errorMessage}</p>
+
                         <Modal.Footer>
-                            <Button
-                                disabled={!isValid || !dirty}
-                                as="input"
-                                type="submit"
-                                value="Войти"
-                            />
+                            <Button disabled={!isValid || !dirty} type="submit">Войти</Button>
                         </Modal.Footer>
                     </Form>
                 )}
             </Formik>
-        </Modal.Body>
+        </>
     )
 }
 export default LoginForm;
