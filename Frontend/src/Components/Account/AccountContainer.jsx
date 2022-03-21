@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import Account from './Account';
-import {logout} from '../../redux/authReducer'
+import { logout } from '../../redux/authReducer'
 
 class AccountContainer extends React.Component {
 
@@ -9,7 +9,8 @@ class AccountContainer extends React.Component {
         return (
             <div>
                 <Account isAuth={this.props.isAuth}
-                    logout={this.props.logout}/>
+                    logout={this.props.logout}
+                    profile={this.props.profile} />
             </div>
         )
     }
@@ -19,8 +20,9 @@ class AccountContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         isAuth: state.auth.isAuth,
+        profile: state.auth.profile
     }
 }
 
 
-export default connect(mapStateToProps,{logout})(AccountContainer);
+export default connect(mapStateToProps, { logout })(AccountContainer);

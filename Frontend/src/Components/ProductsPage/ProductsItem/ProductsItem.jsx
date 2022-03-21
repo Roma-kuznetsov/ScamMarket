@@ -1,10 +1,10 @@
 import React from "react"
 import { Col, Card, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import ButtonLike from "../../ButtonsFrarment/ButtonLike";
 
 // нужно будет вынести в отдельную компоненты и замапить 
 const ProductsItem = (props) => {
-
     return (
         <>
             <Col style={{ justifyContent: "center" }}>
@@ -14,6 +14,7 @@ const ProductsItem = (props) => {
                         <Card.Title>{props.price}$</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">{props.brand}</Card.Subtitle>
                         <NavLink to={`/products/${props.id}`}><Button variant="primary">Купить</Button></NavLink>
+                        <ButtonLike favorites={props.favorites} id={props.id} /> 
                     </Card.Body>
                 </Card>
             </Col>

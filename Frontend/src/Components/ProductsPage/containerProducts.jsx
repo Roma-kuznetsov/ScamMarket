@@ -30,7 +30,9 @@ class ContainerProducts extends React.Component {
                     setCurrentPage={this.props.setCurrentPage}
                     setItem={this.props.setItem}
                     selectedItem={this.props.selectedItem}
-                    select = {this.select}/>
+                    favorites ={this.props.favorites}
+                    select = {this.select}
+                    />
                     : <div>test</div>}
             </div>
         )
@@ -44,7 +46,8 @@ const mapStateToProps = (state) => {
         currentPage: state.products.currentPage,
         pageSize: state.products.pageSize,
         totalItemsCount: state.products.totalItemsCount,
-        selectedItem:state.products.selectedItem
+        selectedItem:state.products.selectedItem,
+        favorites:state.auth.profile.like
     }
 }
 

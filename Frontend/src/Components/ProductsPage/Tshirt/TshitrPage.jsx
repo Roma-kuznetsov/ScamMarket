@@ -4,14 +4,14 @@ import Paginator from "../Paginator";
 import ProductsList from "../ProductsList";
 import Sponsors from "../Sponsors";
 
-const TshitrPage = (props) =>{
+const TshitrPage = (props) => {
     const pageCount = Math.ceil(props.totalItemsCount / props.pageSize)
-    return(
+    return (
         <>
-        <InBar />
-        <Sponsors />
-        <ProductsList body={props.body} setItem={props.setItem} selectedItem={props.selectedItem} select={props.select} />
-        <Paginator onPageChanged={props.onPageChanged} pageCount={pageCount} currentPage={props.currentPage} setCurrentPage={props.setCurrentPage}/>
+            <InBar />
+            <Sponsors />
+            <ProductsList favorites={props.favorites} body={props.body} setItem={props.setItem} selectedItem={props.selectedItem} select={props.select} />
+            <Paginator onPageChanged={props.onPageChanged} pageCount={pageCount} currentPage={props.currentPage} setCurrentPage={props.setCurrentPage} />
         </>
     )
 }

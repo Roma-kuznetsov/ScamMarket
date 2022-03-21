@@ -8,15 +8,18 @@ import { setItem } from '../../../redux/ProductsReducer'
 class OneProdPageContainer extends React.Component {
 
     componentDidMount() {
-        const urlStr = window.location.pathname
-        this.props.setItem(urlStr)
+        const urlStr = window.location.pathname //берем id из урла
+        this.props.setItem(urlStr) // делаем запрос по этому id
     }
 
 
     render() {
+        debugger
         return (
             <div>
-                {<OneProdPage selectedItem={this.props.selectedItem} />}
+                {<OneProdPage selectedItem={this.props.selectedItem} 
+                favorites={this.props.favorites}
+                isFaching={this.props.isFaching} />}
             </div>
         )
     }
@@ -24,8 +27,11 @@ class OneProdPageContainer extends React.Component {
 
 
 const mapStateToProps = function (state) {
+    debugger
     return {
-        selectedItem: state.products.selectedItem
+        selectedItem: state.products.selectedItem,
+        favorites: state.auth.profile.like,
+        isFaching:state.products.isFaching
     }
 }
 

@@ -1,14 +1,19 @@
 import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import SelectedSizeItem from "./selectedSize";
-import s from './style.module.css'
+import s from './oneProd.module.css'
+import ButtonLike from "../../ButtonsFrarment/ButtonLike";
+import Preloader from "../../ButtonsFrarment/Preloader";
 const OneProdPage = (props) => {
     return (
         <Container style={{ marginTop: '100px' }}>
             <Row>
                 <Col sm={12} xxl={4} lg={5} md={6} >
                     <Card style={{ width: '18rem', margin: 'auto' }}>
-                        <Card.Img variant="top" src={props.selectedItem.picture} style={{ height: "18rem" }} />
+                        {props.isFaching ? <div style={{ height: "18rem" }}><Preloader /></div> :
+                            <Card.Img variant="top" src={props.selectedItem.picture} style={{ height: "18rem" }} />
+                        }
+
                     </Card>
                 </Col>
 
@@ -24,10 +29,10 @@ const OneProdPage = (props) => {
                         <SelectedSizeItem selectedItem={props.selectedItem} />
                     </div>
                     <Button variant="primary">Add to cart</Button>
+                    <ButtonLike favorites={props.favorites} id={props.selectedItem._id} />
                 </Col>
             </Row>
         </Container>
     )
 }
-
 export default OneProdPage;

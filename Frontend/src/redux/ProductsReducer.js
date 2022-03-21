@@ -4,8 +4,10 @@ import { productsAPI } from '../api';
 const SET_ITEMS = 'SET_ITEMS';
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_ITEM = 'SET_ITEM'
+const TOGGLE_IS_FACHING = 'TOGGLE_IS_FACHING';
 
 let initialState = {
+    isFaching:false,
     totalItemsCount: 26,
     body: [],
     currentPage: 1,
@@ -33,6 +35,9 @@ const productsReducer = (state = initialState, action) => {
                 currentPage: action.currentPage
             }
         }
+        case TOGGLE_IS_FACHING: {
+            return { ...state, isFaching: action.isFaching }
+        }
         default:
             return state;
     }
@@ -42,6 +47,7 @@ const productsReducer = (state = initialState, action) => {
 export const setTovars = (body) => ({ type: SET_ITEMS, body })
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
 export const setItemCreator = (data) => ({ type: SET_ITEM, data })
+export const toggleIsFaching = (isFaching) => ({ type: TOGGLE_IS_FACHING, isFaching })
 
 
 export const getTovars = (pageSize, currentPage) => {
@@ -56,8 +62,10 @@ export const getTovars = (pageSize, currentPage) => {
 export const setItem = (prodId) => {
     debugger
     return async (dispatch) => {
+        dispatch(toggleIsFaching(true))
         let dataOne = await productsAPI.getOneTShirt(prodId)
-        dispatch(setItemCreator(dataOne))
+        dispatch(toggleIsFaching(false))
+        dispatch(setItemCreator(dataOne))       
     }
 }
 

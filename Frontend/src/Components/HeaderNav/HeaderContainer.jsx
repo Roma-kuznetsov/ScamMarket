@@ -28,7 +28,6 @@ const mapStateToProps = (state) => {
     return {
         isAuth: state.auth.isAuth,
         errorMessage: state.auth.errorMessage,
-        profile: state.auth.profile
     } 
 }
 
