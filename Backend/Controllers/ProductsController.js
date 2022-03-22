@@ -1,6 +1,7 @@
 import ProductsService from "../ServiceAll/ProductsService.js";
 
 class ProductsController{
+    //создать продукт
     async create (req,res){
         try{
             const prodItem = await ProductsService.create(req.body,req.files.picture)
@@ -9,7 +10,7 @@ class ProductsController{
             res.status(500).json(e.message)
         }
     }
-
+    // получить всех пользователей ограничение на фронте 
     async getAll (req,res){
         try{
             const products = await ProductsService.getAll(req.query)
@@ -18,6 +19,7 @@ class ProductsController{
             res.status(500).json(e.message)
         }
     }
+    // карточка одного товара по id
     async getOne (req,res){
         try{
             const products = await ProductsService.getOne(req.params.id)
@@ -26,10 +28,11 @@ class ProductsController{
             res.status(500).json(e.message)
         }
     }
-    async update (req,res){
+        // получение избранного
+    async getFavorits(req,res){
         try{
-            const updatedProd = await ProductsService.update(req.body)
-            return res.json(updatedProd)
+            const favorits = await UserService.getFavoritsLoad(req.body)
+            res.json(favorits)
         }catch(e){
             res.status(500).json(e.message)
         }

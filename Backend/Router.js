@@ -17,12 +17,13 @@ router.delete('/posts/:id', PostController.delete)
 router.post('/productstshirt', ProductsController.create)
 router.get('/productstshirt', ProductsController.getAll)
 router.get('/products/:id', ProductsController.getOne)
-router.put('/products', ProductsController.update)
-router.delete('/products/:id', ProductsController.delete)
+router.get('/favorits',ProductsController.getFavorits)
 //userData 
 router.post('/createuser', UserController.create)
 router.post('/login', UserController.login)
 router.get('/autoAuth', authMiddleware,UserController.autoAuth)
+router.put('/setfav',UserController.setFav)
+router.put('/removefav',UserController.removeFav)
 
 
 

@@ -12,6 +12,7 @@ const authMiddleware = (req, res, next) => {
             console.log("no token")
             return res.status(401).json({ message: "Auth error", resaultCode: 1 })
         }
+        // "bla_bla" - ключ используется ещё в UserServise 
         const decoded = jwt.verify(token, "bla_bla")
         req.user = decoded
         next()
