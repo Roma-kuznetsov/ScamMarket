@@ -3,21 +3,15 @@ import { Button } from "react-bootstrap";
 import { FcLike } from 'react-icons/fc'
 import { MdOutlineFavoriteBorder } from 'react-icons/md'
 
-
 const ButtonLike = (props) => {
-    debugger
+    const listLike = props.favorites
+    const inArr = listLike.includes(props.id)
     return (
         <>
-            {props.favorites === undefined ? null : <ButtonFragment favorites={props.favorites} id={props.is} />}
-        </>
-    )
-}
-const ButtonFragment = (props) =>{
-    debugger
-    return(
-        <>
-        {props.favorites.includes(props.id) ? <Button><FcLike size={20} /></Button>
-                : <Button><MdOutlineFavoriteBorder size={20} /></Button>}
+            {inArr ? <Button onClick={() => { props.addFavThunk(props.idUser, props.id, 'DEL') }} >
+                <FcLike size={20} /></Button>
+                : <Button onClick={() => { props.addFavThunk(props.idUser, props.id, 'ADD') }}>
+                    <MdOutlineFavoriteBorder size={20} /></Button>}
         </>
     )
 }

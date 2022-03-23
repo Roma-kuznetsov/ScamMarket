@@ -5,6 +5,7 @@ const SET_USER = "SET_USER"
 const LOGOUT = "LOGOUT"
 const ERROR_MESSAGE = "ERROR_MESSAGE"
 const SET_ERROR = "SET_ERROR"
+const ADD_FAV = "ADD_FAV"
 
 
 let initialState = {
@@ -39,19 +40,39 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 errorMessage: ""
             }
+        case ADD_FAV:
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    like: [...action.favArr]
+                },
+            }
+
         default:
             return state;
     }
 }
 
+
+export const refreshFav = (favArr) => ({ type: ADD_FAV, favArr })
 export const errorMessage = (message) => ({ type: ERROR_MESSAGE, message })
 export const setUser = user => ({ type: SET_USER, payload: user })
 export const logout = () => ({ type: LOGOUT })
 export const setError = () => ({ type: SET_ERROR })
 
 
-
-
+/// добавление/удаление из избранного
+export const addFavThunk =  (idUser, idItem, method) => async (dispatch) => {
+    if (method === 'ADD') {
+        let response = await authAPI.addFav(idUser, idItem)
+        dispatch(refreshFav(response.data.like))
+    } else if (method === 'DEL') {
+        let response = await authAPI.removeFav(idUser, idItem)
+        dispatch(refreshFav(response.data.like))
+    }
+}
+// регистрация
 export const authThank = (email, password, name) => async (dispatch) => {
     const response = await authAPI.authReg(email, password, name)
     if (response.data.resaultCode === 0) {
@@ -61,10 +82,7 @@ export const authThank = (email, password, name) => async (dispatch) => {
     }
 
 }
-
-
-
-
+// логин
 export const loginThunk = (email, password) => async (dispatch) => {
     const response = await authAPI.login(email, password)
     if (response.data.resaultCode === 0) {
@@ -74,10 +92,7 @@ export const loginThunk = (email, password) => async (dispatch) => {
         dispatch(errorMessage(response.data.message))
     }
 }
-
-
-
-
+//авторизация по токену
 export const autoAuthThunk = () => async (dispatch) => {
     try {
         const response = await authAPI.autoAuth()

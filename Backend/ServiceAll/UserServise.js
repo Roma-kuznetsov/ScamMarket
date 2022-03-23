@@ -93,7 +93,7 @@ class UserService {
         try{
             const obj = await regForm.findById(data._id); // получаем объект
             // если like не пришел или пустой
-            if(data.like.length < 1){
+            if(data.like.lenght < 1){
                 return{
                     resaultCode: 1,
                     message: "nice try"
@@ -124,7 +124,7 @@ class UserService {
         try{
             const obj = await regForm.findById(data._id); // получаем объект
             // если like не пришел или пустой
-            if(data.like.length < 1){
+            if(data.like.lenght < 1){
                 return{
                     resaultCode: 1,
                     message: "nice try"

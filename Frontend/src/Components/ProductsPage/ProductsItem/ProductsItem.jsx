@@ -14,7 +14,9 @@ const ProductsItem = (props) => {
                         <Card.Title>{props.price}$</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">{props.brand}</Card.Subtitle>
                         <NavLink to={`/products/${props.id}`}><Button variant="primary">Купить</Button></NavLink>
-                        <ButtonLike favorites={props.favorites} id={props.id} /> 
+                        {props.favorites === undefined ? null:
+                        <ButtonLike idUser={props.idUser} addFavThunk={props.addFavThunk} 
+                        favorites={props.favorites} id={props.id} /> }
                     </Card.Body>
                 </Card>
             </Col>

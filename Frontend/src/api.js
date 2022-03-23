@@ -27,6 +27,14 @@ export const authAPI = {
         return axios.get("http://localhost:3001/api/autoAuth",
             { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
         )
+    },
+    addFav(idUser,idItem){
+        return axios.put('http://localhost:3001/api/setfav',
+        {_id:idUser,like:idItem})
+    },
+    removeFav(idUser,idItem){
+        return axios.put('http://localhost:3001/api/removefav',
+        {_id:idUser,like:idItem})
     }
 }
 

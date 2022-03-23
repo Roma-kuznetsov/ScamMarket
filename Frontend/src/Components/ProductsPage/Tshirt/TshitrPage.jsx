@@ -10,7 +10,7 @@ const TshitrPage = (props) => {
         <>
             <InBar />
             <Sponsors />
-            <ProductsList favorites={props.favorites} body={props.body} setItem={props.setItem} selectedItem={props.selectedItem} select={props.select} />
+            <ProductsList idUser={props.idUser} addFavThunk={props.addFavThunk} favorites={props.favorites} body={props.body} setItem={props.setItem} selectedItem={props.selectedItem} select={props.select} />
             <Paginator onPageChanged={props.onPageChanged} pageCount={pageCount} currentPage={props.currentPage} setCurrentPage={props.setCurrentPage} />
         </>
     )
