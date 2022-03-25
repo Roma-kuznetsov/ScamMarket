@@ -31,7 +31,7 @@ class ProductsController{
         // получение избранного
     async getFavorits(req,res){
         try{
-            const favorits = await UserService.getFavoritsLoad(req.body)
+            const favorits = await ProductsService.getFavoritsLoad(req.query.id)
             res.json(favorits)
         }catch(e){
             res.status(500).json(e.message)

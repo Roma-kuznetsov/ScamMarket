@@ -1,18 +1,19 @@
 import axios from "axios"
-import { setUser } from "./redux/authReducer"
 
 
 export const productsAPI = {
     getTShirt(currentPage = 1, pageSize = 16) {
-        return fetch(`/api/productstshirt?count=${pageSize}&page=${currentPage}`)
-            .then(response => response.json())
-            .then(response => response)
+        return axios.get(`/api/productstshirt?count=${pageSize}&page=${currentPage}`)
     },
 
     getOneTShirt(itemId) {
         return fetch(`/api${itemId}`)
             .then(response => response.json())
             .then(response => response)
+    },
+    getFavorits(userId){
+        debugger
+        return axios.get(`http://localhost:3001/api/favorits?id=${userId}`)
     }
 }
 

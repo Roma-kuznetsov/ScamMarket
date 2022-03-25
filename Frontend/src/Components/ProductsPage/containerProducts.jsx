@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import TshitrPage from './Tshirt/TshitrPage';
 import { getTovars, setCurrentPage, setItem } from "../../redux/ProductsReducer";
-import { addFavThunk} from "../../redux/authReducer"
+import { addFavThunk } from "../../redux/authReducer"
 
 // контейнер для товаров футболки
 
@@ -11,7 +11,6 @@ class ContainerProducts extends React.Component {
     componentDidMount() {
         this.props.getTovars(this.props.currentPage, this.props.pageSize)
     }
-
     onPageChanged = (pageNumber) => {
         this.props.getTovars(pageNumber, this.props.pageSize);
     }
@@ -23,7 +22,7 @@ class ContainerProducts extends React.Component {
     render() {
         return (
             <div>
-                {document.location.pathname === "/short" ? <TshitrPage body={this.props.body}
+                <TshitrPage body={this.props.body}
                     onPageChanged={this.onPageChanged}
                     totalItemsCount={this.props.totalItemsCount}
                     pageSize={this.props.pageSize}
@@ -33,10 +32,9 @@ class ContainerProducts extends React.Component {
                     selectedItem={this.props.selectedItem}
                     favorites={this.props.favorites}
                     select={this.select}
-                    addFavThunk = {this.props.addFavThunk}
+                    addFavThunk={this.props.addFavThunk}
                     idUser={this.props.idUser}
                 />
-                    : <div>test</div>}
             </div>
         )
     }

@@ -4,12 +4,12 @@ import HeaderNav from './HeaderNav';
 import{autoAuthThunk,setError} from '../../redux/authReducer'
 
 class HeaderContainer extends React.Component {
-
+/*
     componentDidMount() {
             this.props.autoAuthThunk()
         
     }
-
+*/
     render() {
         return (
             <div>
