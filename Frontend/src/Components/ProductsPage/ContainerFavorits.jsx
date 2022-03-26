@@ -29,7 +29,6 @@ class ContainerProducts extends React.Component {
     }
 
     render() {
-        debugger
         return (
             <div>
                 {this.props.isAuth ? 

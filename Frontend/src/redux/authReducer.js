@@ -6,9 +6,11 @@ const LOGOUT = "LOGOUT"
 const ERROR_MESSAGE = "ERROR_MESSAGE"
 const SET_ERROR = "SET_ERROR"
 const ADD_FAV = "ADD_FAV"
+const SET_PROCCES = 'SET_PROCCES'
 
 
 let initialState = {
+    inProcces :false,
     isAuth: false,
     profile: {},
     errorMessage: ""
@@ -48,6 +50,11 @@ const authReducer = (state = initialState, action) => {
                     like: [...action.favArr]
                 },
             }
+            case SET_PROCCES:
+                return{
+                    ...state,
+                    inProcces:action.isProcces
+                }
 
         default:
             return state;
@@ -60,6 +67,7 @@ export const errorMessage = (message) => ({ type: ERROR_MESSAGE, message })
 export const setUser = user => ({ type: SET_USER, payload: user })
 export const logout = () => ({ type: LOGOUT })
 export const setError = () => ({ type: SET_ERROR })
+const toggleinProcces = (isProcces) => ({ type: SET_PROCCES, isProcces })
 
 
 /// добавление/удаление из избранного
@@ -95,11 +103,14 @@ export const loginThunk = (email, password) => async (dispatch) => {
 //авторизация по токену
 export const autoAuthThunk = () => async (dispatch) => {
     try {
+        dispatch(toggleinProcces(true))
         const response = await authAPI.autoAuth()
         dispatch(setUser(response.data.user))
         localStorage.setItem('token', response.data.token)
+        dispatch(toggleinProcces(false))
         console.log('Authorization acces')
     } catch (e) {
+        dispatch(toggleinProcces(false))
         localStorage.removeItem('token')
     }
 }
