@@ -15,10 +15,6 @@ class ContainerProducts extends React.Component {
         this.props.getTovars(pageNumber, this.props.pageSize);
     }
 
-    select = (id) => {
-        this.props.setItem(id)
-    }
-
     render() {
         return (
             <div>
@@ -28,10 +24,7 @@ class ContainerProducts extends React.Component {
                     pageSize={this.props.pageSize}
                     currentPage={this.props.currentPage}
                     setCurrentPage={this.props.setCurrentPage}
-                    setItem={this.props.setItem}
-                    selectedItem={this.props.selectedItem}
                     favorites={this.props.favorites}
-                    select={this.select}
                     addFavThunk={this.props.addFavThunk}
                     idUser={this.props.idUser}
                 />

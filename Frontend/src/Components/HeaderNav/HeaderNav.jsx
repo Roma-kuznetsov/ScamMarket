@@ -3,7 +3,6 @@ import "../../index.css";
 import { Nav, Navbar, NavDropdown, Container, Row, Col, Modal, Button, Badge } from "react-bootstrap";
 import { ReactComponent as Logo } from "../../logo.svg";
 import { BsFillBasket3Fill } from "react-icons/bs";
-import { CgPhone } from "react-icons/cg";
 import LoginForm from "../FormControl/LoginForm";
 import RegForm from "../FormControl/RegForm";
 import { NavLink } from "react-router-dom";

@@ -18,7 +18,6 @@ const LoginForm = (props) => {
                 }}
                 onSubmit={values => {
                     dispatch(loginThunk(values.email, values.password))
-                    console.log(values)
                 }}
             >
                 {({ handleSubmit, isValid, dirty }) => (

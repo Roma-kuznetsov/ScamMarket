@@ -3,11 +3,13 @@ import authReducer from "./authReducer";
 import thunkMiddleware from "redux-thunk";
 import productsReducer from "./ProductsReducer";
 import corzinaReducer from "./corzinaReducers";
+import appReducer from "./appReducer";
 
 let reducers = combineReducers({
     auth:authReducer,
     products:productsReducer,
-    corzina:corzinaReducer
+    corzina:corzinaReducer,
+    app: appReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

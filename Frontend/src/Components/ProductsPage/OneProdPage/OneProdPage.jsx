@@ -29,7 +29,9 @@ const OneProdPage = (props) => {
                         <SelectedSizeItem selectedItem={props.selectedItem} />
                     </div>
                     <Button variant="primary">Add to cart</Button>
-                    <ButtonLike favorites={props.favorites} id={props.selectedItem._id} />
+                    {!props.favorites ? null:
+                        <ButtonLike idUser={props.idUser} addFavThunk={props.addFavThunk} 
+                        favorites={props.favorites} id={props.selectedItem._id} /> }
                 </Col>
             </Row>
         </Container>

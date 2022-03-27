@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import OneProdPage from './OneProdPage';
-import { setItem } from '../../../redux/ProductsReducer'
+import { addFavThunk } from "../../../redux/authReducer"
+import {setItem} from "../../../redux/ProductsReducer"
 
 // контейнер для одного товара
 
@@ -19,7 +20,9 @@ class OneProdPageContainer extends React.Component {
             <div>
                 {<OneProdPage selectedItem={this.props.selectedItem} 
                 favorites={this.props.favorites}
-                isFaching={this.props.isFaching} />}
+                isFaching={this.props.isFaching} 
+                idUser = {this.props.idUser}
+                addFavThunk = {this.props.addFavThunk}/>}
             </div>
         )
     }
@@ -31,12 +34,13 @@ const mapStateToProps = function (state) {
     return {
         selectedItem: state.products.selectedItem,
         favorites: state.auth.profile.like,
-        isFaching:state.products.isFaching
+        isFaching:state.products.isFaching,
+        idUser: state.auth.profile.id,
     }
 }
 
 
-export default connect(mapStateToProps, { setItem })(OneProdPageContainer);
+export default connect(mapStateToProps, {addFavThunk,setItem})(OneProdPageContainer);
 
 
 

@@ -13,7 +13,7 @@ const Sponsors = () => {
     let listBrand =[astra,adidas,asics,nike,stone]
     return (
         <>
-            <Container style={{marginBottom:"40px"}}>
+            <Container style={{marginBottom:"40px",marginTop:"100px"}}>
                 <Row>
                     {listBrand.map((brand) => <SponsorItem key={brand} brand={brand} />)}
                 </Row>

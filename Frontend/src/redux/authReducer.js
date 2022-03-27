@@ -1,5 +1,4 @@
 import { authAPI, authRegAs } from "../api"
-import axios from "axios"
 
 const SET_USER = "SET_USER"
 const LOGOUT = "LOGOUT"
@@ -103,8 +102,10 @@ export const loginThunk = (email, password) => async (dispatch) => {
 //авторизация по токену
 export const autoAuthThunk = () => async (dispatch) => {
     try {
+        debugger
         dispatch(toggleinProcces(true))
         const response = await authAPI.autoAuth()
+        debugger
         dispatch(setUser(response.data.user))
         localStorage.setItem('token', response.data.token)
         dispatch(toggleinProcces(false))

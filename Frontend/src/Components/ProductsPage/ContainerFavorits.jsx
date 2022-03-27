@@ -44,7 +44,7 @@ class ContainerProducts extends React.Component {
                 setItem={this.props.setItem}
                 onPageChanged={this.onPageChanged}
                 /> 
-                :<div>Авторизируйтесь или зарегистрируйтесь</div> }
+                :<Navigate to="/home"/> }
                 
             </div>
         )

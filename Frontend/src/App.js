@@ -12,18 +12,17 @@ import OneProdPageContainer from './Components/ProductsPage/OneProdPage/OneProdP
 import HeaderContainer from './Components/HeaderNav/HeaderContainer';
 import AccountContainer from './Components/Account/AccountContainer';
 import ContainerFavorits from './Components/ProductsPage/ContainerFavorits';
-import {connect, Provider} from 'react-redux';
-import { autoAuthThunk } from './redux/authReducer'
-import { compose } from 'redux';
+import { connect, Provider } from 'react-redux';
 import Preloader from './Components/ButtonsFrarment/Preloader';
+import { initializeApp } from './redux/appReducer'
 
 
 class App extends React.Component {
     componentDidMount() {
-        this.props.autoAuthThunk()
+        this.props.initializeApp()
     }
     render() {
-        if (this.props.inProcces) {
+        if (!this.props.initialized) {
             return <Preloader />
         }
         return (
@@ -45,20 +44,22 @@ class App extends React.Component {
         )
     }
 }
-const SamuraiJSApp = (props) =>{
+const SamuraiJSApp = () => {
     return (
-    <Provider store={store}>
-        <AppContainer />
-    </Provider>
+        <Provider store={store}>
+            <AppContainer />
+        </Provider>
     )
 }
+
 const mapStateToProps = (state) => {
-    return{
-        inProcces: state.auth.inProcces
+    return {
+        inProcces: state.auth.inProcces,
+        isAuth: state.auth.isAuth,
+        initialized: state.app.initialized
     }
 }
-const AppContainer = compose(
-    connect(mapStateToProps, { autoAuthThunk }))(App);
+const AppContainer = connect(mapStateToProps, { initializeApp })(App);
 
 export default SamuraiJSApp;
 

@@ -25,7 +25,6 @@ class ProductsService {
     // получение одного продукта
     async getOne(id) {
         const products = await CardProducts.findById(id)
-        console.log(id)
         return products
     }
 
@@ -37,7 +36,6 @@ class ProductsService {
             const favoritsUser = await regForm.findById(id)
             //получение count
             const count = favoritsUser.like.length
-            console.log(count)
             //делаем запрос по всем id которые хранятся у этого пользователя в like
             const favorits = await CardProducts.find({ _id: favoritsUser.like })
             // возвращаем все найденые товары и их кол-во
