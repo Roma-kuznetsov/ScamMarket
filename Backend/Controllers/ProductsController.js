@@ -37,14 +37,16 @@ class ProductsController{
             res.status(500).json(e.message)
         }
     }
-    async delete (req,res){
+    // получение избранного
+    async getCart(req,res){
         try{
-            const prod = await ProductsService.delete(req.params.id)
-            return res.json(prod)
+            const cart = await ProductsService.getCartLoad(req.query.id)
+            res.json(cart)
         }catch(e){
             res.status(500).json(e.message)
         }
     }
+
 }
 
 export default new ProductsController()

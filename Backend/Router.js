@@ -3,8 +3,7 @@ import PostController from "./Controllers/PostController.js";
 import ProductsController from "./Controllers/ProductsController.js";
 import UserController from "./Controllers/UserController.js";
 import authMiddleware from '../Backend/middleware/auth.middleware.js'
-import regForm from "./Schem/regForm.js";
-import jwt from 'jsonwebtoken';
+
 
 const router = new Router()
 //post CRUD
@@ -18,12 +17,17 @@ router.post('/productstshirt', ProductsController.create)
 router.get('/productstshirt', ProductsController.getAll)
 router.get('/products/:id', ProductsController.getOne)
 router.get('/favorits',ProductsController.getFavorits)
-//userData 
+router.get('/cart',ProductsController.getCart)
+//userLogin
 router.post('/createuser', UserController.create)
 router.post('/login', UserController.login)
 router.get('/autoAuth', authMiddleware,UserController.autoAuth)
+//favorits
 router.put('/setfav',UserController.setFav)
 router.put('/removefav',UserController.removeFav)
+//cart 
+router.put('/setcart',UserController.setCart)
+router.put('/removecart',UserController.removeCart)
 
 
 

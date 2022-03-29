@@ -150,6 +150,61 @@ class UserService {
             console.log(e)
         }
     }
+    //добавление в корзину
+    /*
+    _id : передать account id
+    cart: передать str (id товара)
+    */
+    async setCart(data){
+        if(!data._id){
+            throw new Error('id not found')
+        }
+        try{
+            const obj = await regForm.findById(data._id); // получаем объект
+            // если like не пришел или пустой
+            obj.cart.push(data.cart)  // обращаемся к массиву внутри полученого объекта и добавляем новый элемент
+            console.log(obj)
+            await obj.save() // сохраняем новый obj в бд
+            return{
+                // возвращаем не весь obj а только список внутри него
+                like:obj.cart,
+                resaultCode:0
+            }
+        }catch(e){
+            console.log(e)
+        }
+    }
+    // удаление из корзины
+    /*
+    _id : передать account id
+    like: передать str (id товара)
+    */
+    async remCart(data){
+        if(!data._id){
+            throw new Error('id not found')
+        }
+        try{
+            const obj = await regForm.findById(data._id); // получаем объект
+            const index = obj.cart.indexOf(data.cart) // находим под каким индексом находится id
+            // если такого id не найденно в массиве
+            if(index === -1){
+                return{
+                    resaultCode: 1,
+                    message: "nice try"
+                }
+            }
+            obj.cart.splice(index,1); // удалить из массива элемент с этим id второй параметр говорит сколько будет удалено элементов
+            await obj.save() // сохранине изменений
+            console.log(obj) 
+            // возвращение массива 
+            return{
+                resaultCode:0,
+                cart:obj.cart
+            }
+        }catch(e){
+            console.log(e)
+        }
+    }
 }
 
 

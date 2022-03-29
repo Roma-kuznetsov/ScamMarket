@@ -50,7 +50,24 @@ class UserController {
             res.status(500).json(e.message)
         }
     }
-
+    //добавление в корзину
+    async setCart(req,res){
+        try{
+            const cart = await UserService.setCart(req.body)
+            res.json(cart)
+        }catch(e){
+            res.status(500).json(e.message)
+        }
+    }
+    // удаление из корзины
+    async removeCart(req,res){
+        try{
+            const cart = await UserService.remCart(req.body)
+            res.json(cart)
+        }catch(e){
+            res.status(500).json(e.message)
+        }
+    }
 }
 
 export default new UserController()
