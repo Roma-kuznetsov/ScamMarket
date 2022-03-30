@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 
 
 
+
 class UserService {
     //создание пользователя регистрация
     async create(userData) {
@@ -154,20 +155,33 @@ class UserService {
     /*
     _id : передать account id
     cart: передать str (id товара)
+    sizeCart: размер str()
     */
     async setCart(data){
-        if(!data._id){
-            throw new Error('id not found')
-        }
         try{
             const obj = await regForm.findById(data._id); // получаем объект
-            // если like не пришел или пустой
-            obj.cart.push(data.cart)  // обращаемся к массиву внутри полученого объекта и добавляем новый элемент
-            console.log(obj)
+            // формируем объект из полученных данных
+            let myArray ={
+                itemId : data.cart,
+                size: data.cartSize,
+                count: data.count
+            }
+            //проверяем существует ли новый объект в массиве или нет
+            let fitration = obj.cart.filter(i => JSON.stringify(Object.entries(i).sort()) === 
+            JSON.stringify(Object.entries(myArray).sort()))
+            //если объекта в массиве нет то вернется [] length 0
+            if(fitration.length > 0){
+                return{
+                    resaultCode:1,
+                    message:"error"
+                }
+            }
+            obj.cart.push(myArray)  // обращаемся к массиву внутри полученого объекта и добавляем новый элемент
             await obj.save() // сохраняем новый obj в бд
+            console.log(obj)
             return{
                 // возвращаем не весь obj а только список внутри него
-                like:obj.cart,
+                cart:obj.cart,
                 resaultCode:0
             }
         }catch(e){
@@ -206,7 +220,6 @@ class UserService {
         }
     }
 }
-
 
 
 export default new UserService();

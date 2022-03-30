@@ -8,7 +8,7 @@ const UserSchem = new mongoose.Schema({
     password: { type: String, required: true },
     passwordValid: { type: String },
     name: { type: String, required: true },
-    cart: [{ type: String }],
+    cart: [{  }],
     like: [{ type: String }],
 
 

@@ -13,11 +13,14 @@ const HeaderNav = (props) => {
     const [show, setShow] = useState(false);
     const [reg, setReg] = useState(false);
 
+    const setRegistr = (value) =>{
+        setReg(value)
+        props.setError()
+    }
+
     const handleClose = () => {
         setShow(false)
-        if (props.errorMessage.length > 1) {
-            props.setError()
-        }
+        props.setError()
     }
     if (props.isAuth && show) {
         handleClose()
@@ -59,9 +62,10 @@ const HeaderNav = (props) => {
                             <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                                 <Nav className="mr-auto" style={{ marginLeft: "10px" }}>
                                     {/* Cart */}
+                                    {!props.cart? null :
                                     <Nav.Link as="div" > <div><NavLink className={s.accountLink} to={'/corzina'}>
-                                        <Badge bg="secondary">9</Badge> <BsFillBasket3Fill size={20} />
-                                        Корзина</NavLink></div ></Nav.Link>
+                                        <Badge bg="secondary">{props.cart.length}</Badge> <BsFillBasket3Fill size={20} />
+                                        Корзина</NavLink></div ></Nav.Link>}
                                     {/* account or forms */}
                                     <Nav.Link as="div" >{props.isAuth ?
                                         <div><NavLink className={s.accountLink} to={'/account'}>
@@ -75,15 +79,12 @@ const HeaderNav = (props) => {
             </Container>
 
 
-
                             {/* modal window  */}
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title style={{ marginRight: "40px" }}> {reg ? <div>Регистриция</div> : <div> Вход</div>}</Modal.Title>
-
-                    {reg ? <Button variant="light" onClick={() => { setReg(false) }}>Перейти к входу</Button>
-                        : <Button variant="light" onClick={setReg}>Создать аккаунт</Button>}
-
+                    {reg ? <Button variant="light" onClick={() => { setRegistr(false) }}>Войти</Button>
+                        : <Button variant="light" onClick={() =>{setRegistr(true)}}>Создать аккаунт</Button>}
                 </Modal.Header>
                 {reg ? <RegForm errorMessage={props.errorMessage} /> : <LoginForm errorMessage={props.errorMessage} />}
             </Modal>

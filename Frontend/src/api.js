@@ -36,6 +36,10 @@ export const authAPI = {
     removeFav(idUser,idItem){
         return axios.put('http://localhost:3001/api/removefav',
         {_id:idUser,like:idItem})
+    },
+    addCart(idUser,idItem,cartSize,count=1){
+        return axios.put('http://localhost:3001/api/setcart',
+        {_id:idUser,cart:idItem,cartSize,count})
     }
 }
 
