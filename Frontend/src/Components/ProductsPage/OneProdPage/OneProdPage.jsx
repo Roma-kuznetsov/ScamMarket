@@ -5,23 +5,48 @@ import s from './oneProd.module.css'
 import ButtonLike from "../../ButtonsFrarment/ButtonLike";
 import Preloader from "../../ButtonsFrarment/Preloader";
 const OneProdPage = (props) => {
+    debugger
     const [size, setSize] = useState(null);
+    const [count, setCount] = useState(1)
 
-    const buttonSubmit = (idUser, itemId, size) => {
+    const nullCount = (inputSize) => {
+        if (size !== inputSize) {
+            setSize(inputSize)
+            setCount(1)
+        }
+    }
+
+    const buttonMinCount = () => {
+        if (count === 1) {
+            return false
+        } else {
+            setCount(count - 1)
+        }
+    }
+
+    const buttonMaxCount = () => {
+        if (count >= props.selectedItem[`${size}Count`]) {
+            setCount(props.selectedItem[`${size}Count`])
+        } else {
+            setCount(count + 1)
+        }
+    }
+
+    const buttonSubmit = (idUser, itemId, size, count,price,picture) => {
         if (size === null || size === 'Вам нужно выбрать размер') {
             setSize('Вам нужно выбрать размер')
-        }else{
-            props.addCartThunk(idUser, itemId, size)
+        } else {
+            props.addCartThunk(idUser, itemId, size, count,price,picture)
         }
-        
     }
+
     return (
         <Container style={{ marginTop: '100px' }}>
             <Row>
                 <Col sm={12} xxl={4} lg={5} md={6} >
                     <Card style={{ width: '18rem', margin: 'auto' }}>
                         {props.isFaching ? <div style={{ height: "18rem" }}><Preloader /></div> :
-                            <Card.Img variant="top" src={props.selectedItem.picture} style={{ height: "18rem" }} />
+                            <Card.Img variant="top" src={`http://localhost:3001/${props.selectedItem.picture}`} style={{ height: "18rem" }} />
                         }
                     </Card>
                 </Col>
@@ -35,18 +60,35 @@ const OneProdPage = (props) => {
                     <div className={s.line}></div>
                     <div className={s.price}>Price: {props.selectedItem.price}$</div>
                     <div className={s.price}>Size: {size}
-                        <SelectedSizeItem selectedItem={props.selectedItem} setSize={setSize} />
+                        <SelectedSizeItem selectedItem={props.selectedItem} setSize={nullCount} />
+                    </div>
+                    <div>
+                        В наличии {props.selectedItem[`${size}Count`]}
                     </div>
                     {!props.favorites ? <div>Чтобы добавлять товары в корзину и избранное зарегистрируйтесь или войдите</div> :
-                        <Button variant="primary" onClick={() => {buttonSubmit(props.idUser, props.selectedItem._id, size) }}>
-                            Add to cart</Button>}
-
-                    {!props.favorites ? null :
-                        <ButtonLike idUser={props.idUser} addFavThunk={props.addFavThunk}
-                            favorites={props.favorites} id={props.selectedItem._id} />}
+                        <div className={s.flex}>
+                            <Button variant="primary" onClick={() => buttonMinCount()}>-</Button>
+                            <div className={s.count}>
+                                {count}
+                            </div>
+                            <Button variant="primary" onClick={() => buttonMaxCount()}>+</Button>
+                            <Button variant="primary" onClick={() => { buttonSubmit(props.idUser, props.selectedItem._id, size, count,props.selectedItem.price,props.selectedItem.picture) }}>
+                                Add to cart</Button>
+                            <ButtonLike idUser={props.idUser} addFavThunk={props.addFavThunk}
+                                favorites={props.favorites} id={props.selectedItem._id} />
+                        </div>}
                 </Col>
             </Row>
         </Container>
     )
 }
+//<input  type="number" min={1} max={props.selectedItem[`${size}Count`]} value={count} onChange={(event) => setCount(event.target.value)} />
 export default OneProdPage;
+
+
+
+
+
+
+
+//{props.selectedItem[`${size}Count`]}

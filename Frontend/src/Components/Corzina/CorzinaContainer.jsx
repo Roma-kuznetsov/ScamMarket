@@ -1,17 +1,28 @@
 import React from "react";
-import {Container,Row,Col } from 'react-bootstrap';
-import * as axios from "axios"
+import Corzina from './Corzina'
+import { connect } from 'react-redux';
 
-const Corzina = () =>{
-    return(
-        <Container>
-            <Row>
-                <Col>
-                    <h2>Оформить заказ</h2>
-                </Col>
-            </Row>
-        </Container>
-    )
+// контейнер для корзины
+
+class CorzinaContainer extends React.Component {
+
+    render() {
+        debugger
+        return (
+            <div>
+                {<Corzina cart={this.props.cart}/>}
+            </div>
+        )
+    }
 }
 
-export default Corzina;
+
+const mapStateToProps = function (state) {
+    debugger
+    return {
+        cart: state.auth.profile.cart,
+    }
+}
+
+
+export default connect(mapStateToProps, {})(CorzinaContainer);

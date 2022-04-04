@@ -1,7 +1,6 @@
 import React from 'react';
 import store from "./redux/store"
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Corzina from './Components/Corzina/Corzina';
 import Footer2 from './Components/Footer/Footer2';
 import Home from './Components/Home/Home';
 import TshitrPage from './Components/ProductsPage/Tshirt/TshitrPage';
@@ -14,7 +13,7 @@ import ContainerFavorits from './Components/ProductsPage/ContainerFavorits';
 import { connect, Provider } from 'react-redux';
 import Preloader from './Components/ButtonsFrarment/Preloader';
 import { initializeApp } from './redux/appReducer'
-
+import CorzinaContainer from './Components/Corzina/CorzinaContainer';
 
 class App extends React.Component {
     componentDidMount() {
@@ -33,7 +32,7 @@ class App extends React.Component {
                     <Route path="/short" element={<ContainerProducts />} />
                     <Route path="/favorits" element={<ContainerFavorits />} />
                     <Route path="/sweat" element={<TshitrPage image={sweat} />} />
-                    <Route path="/corzina" element={<Corzina />} />
+                    <Route path="/corzina" element={<CorzinaContainer />} />
                     <Route path="/test" element={<ContainerProducts />} />
                     <Route path="/products/:id" element={<OneProdPageContainer />} />
                     <Route path="/account" element={<AccountContainer />} />

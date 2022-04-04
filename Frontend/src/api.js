@@ -3,13 +3,12 @@ import axios from "axios"
 
 export const productsAPI = {
     getTShirt(currentPage = 1, pageSize = 16) {
-        return axios.get(`/api/productstshirt?count=${pageSize}&page=${currentPage}`)
+        return axios.get(`http://localhost:3001/api/productstshirt?count=${pageSize}&page=${currentPage}`)
     },
 
     getOneTShirt(itemId) {
-        return fetch(`/api${itemId}`)
-            .then(response => response.json())
-            .then(response => response)
+        debugger
+        return axios.get(`http://localhost:3001/api${itemId}`)
     },
     getFavorits(userId){
         debugger
@@ -37,9 +36,9 @@ export const authAPI = {
         return axios.put('http://localhost:3001/api/removefav',
         {_id:idUser,like:idItem})
     },
-    addCart(idUser,idItem,cartSize,count=1){
+    addCart(idUser,idItem,cartSize,count,price,picture){
         return axios.put('http://localhost:3001/api/setcart',
-        {_id:idUser,cart:idItem,cartSize,count})
+        {_id:idUser,cart:idItem,cartSize,count,price,picture})
     }
 }
 

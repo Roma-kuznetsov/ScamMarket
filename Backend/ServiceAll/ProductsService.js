@@ -56,12 +56,15 @@ class ProductsService {
     async getCartLoad(id) {
         try {
             // получаем пользователя 
-            const favoritsUser = await regForm.findById(id)
+            const user = await regForm.findById(id)
             //получение count
-            const count = favoritsUser.cart.length
-            //делаем запрос по всем id которые хранятся у этого пользователя в like
-            const cart = await CardProducts.find({ _id: favoritsUser.cart })
+            const count = user.cart.length
+            //делаем запрос по всем id которые хранятся у этого пользователя в cart
+            const cartId = user.cart.map(item => item.itemId)
+            const cart = await CardProducts.find({ _id: cartId }) 
+            console.log(cart) // array items
             const totalPrice = cart.map(item => item.price).reduce((prev, curr) => prev + curr, 0);
+            console.log(totalPrice)
             // возвращаем все найденые товары и их кол-во
             return {
                 totalPrice,

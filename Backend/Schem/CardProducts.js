@@ -10,7 +10,6 @@ const ProductsTShirt = new mongoose.Schema({
     lCount: { type: Number },
     xlCount: { type: Number },
     xxlCount: { type: Number },
-
 })
 
 

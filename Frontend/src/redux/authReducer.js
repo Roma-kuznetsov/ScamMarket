@@ -90,8 +90,8 @@ export const addFavThunk =  (idUser, idItem, method) => async (dispatch) => {
     }
 }
 // добавление в корзину
-export const addCartThunk = (idUser,idItem,size) => async (dispatch) =>{
-    const response = await authAPI.addCart(idUser,idItem,size)
+export const addCartThunk = (idUser,idItem,size,count,price,picture) => async (dispatch) =>{
+    const response = await authAPI.addCart(idUser,idItem,size,count,price,picture)
     if(response.data.resaultCode === 0){
         dispatch(setCart(response.data.cart))
     }else{

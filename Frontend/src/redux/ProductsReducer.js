@@ -88,7 +88,7 @@ export const setItem = (prodId) => {
         dispatch(toggleIsFaching(true))
         let dataOne = await productsAPI.getOneTShirt(prodId)
         dispatch(toggleIsFaching(false))
-        dispatch(setItemCreator(dataOne))
+        dispatch(setItemCreator(dataOne.data))
     }
 }
 

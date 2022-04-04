@@ -2,7 +2,6 @@ import React from "react"
 import Paginator from "../Paginator";
 import ProductsList from "../ProductsList";
 import Sponsors from "../Sponsors";
-import FavoritsNull from "../../ButtonsFrarment/FavoritsNull"
 
 const TshitrPage = (props) => {
     const pageCount = Math.ceil(props.totalItemsCount / props.pageSize)
