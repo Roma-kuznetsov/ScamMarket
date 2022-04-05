@@ -28,6 +28,7 @@ router.put('/removefav',UserController.removeFav)
 //cart 
 router.put('/setcart',UserController.setCart)
 router.put('/removecart',UserController.removeCart)
+router.put('/updatecart',UserController.updateCart)
 
 
 

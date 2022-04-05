@@ -8,12 +8,18 @@ const UserSchem = new mongoose.Schema({
     password: { type: String, required: true },
     passwordValid: { type: String },
     name: { type: String, required: true },
-    cart: [{  }],
+    cart: [{
+        itemId: { type: String },
+        size: { type: String },
+        count: { type: Number },
+        price: { type: Number },
+        picture: { type: String },
+        nalic: { type: Number },
+        fieldId: {}
+    }],
     like: [{ type: String }],
-
-
-
 })
+
 
 
 export default mongoose.model(`UserSchem`, UserSchem);

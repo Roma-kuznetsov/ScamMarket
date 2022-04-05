@@ -1,4 +1,4 @@
-import { authAPI} from "../api"
+import { authAPI } from "../api"
 
 const SET_USER = "SET_USER"
 const LOGOUT = "LOGOUT"
@@ -7,10 +7,11 @@ const SET_ERROR = "SET_ERROR"
 const ADD_FAV = "ADD_FAV"
 const SET_PROCCES = 'SET_PROCCES'
 const ADD_CART = "ADD_CART"
+const REMOVE_CART = "REMOVE_CART"
 
 
 let initialState = {
-    inProcces :false,
+    inProcces: false,
     isAuth: false,
     profile: {},
     errorMessage: "",
@@ -51,18 +52,26 @@ const authReducer = (state = initialState, action) => {
                 },
             }
         case ADD_CART:
-            return{
+            return {
                 ...state,
                 profile: {
                     ...state.profile,
                     cart: [...action.cartArr]
                 },
             }
-            case SET_PROCCES:
-                return{
-                    ...state,
-                    inProcces:action.isProcces
+        case REMOVE_CART:
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    cart: [...action.cartArr]
                 }
+            }
+        case SET_PROCCES:
+            return {
+                ...state,
+                inProcces: action.isProcces
+            }
 
         default:
             return state;
@@ -75,12 +84,20 @@ export const errorMessage = (message) => ({ type: ERROR_MESSAGE, message })
 export const setUser = user => ({ type: SET_USER, payload: user })
 export const logout = () => ({ type: LOGOUT })
 export const setError = () => ({ type: SET_ERROR })
-const setCart = (cartArr) =>({type:ADD_CART,cartArr})
+const setCart = (cartArr) => ({ type: ADD_CART, cartArr })
+const removeCart = (cartArr) => ({ type: REMOVE_CART, cartArr })
 const toggleinProcces = (isProcces) => ({ type: SET_PROCCES, isProcces })
 
+//удаление из корзины
+export const removeCartThunk = (idUser, fieldId) => async (dispatch) => {
+    const response = await authAPI.removeCart(idUser, fieldId)
+    if (response.data.resaultCode === 0) {
+        dispatch(removeCart(response.data.cart))
+    }
+}
 
 // добавление/удаление из избранного
-export const addFavThunk =  (idUser, idItem, method) => async (dispatch) => {
+export const addFavThunk = (idUser, idItem, method) => async (dispatch) => {
     if (method === 'ADD') {
         let response = await authAPI.addFav(idUser, idItem)
         dispatch(refreshFav(response.data.like))
@@ -90,11 +107,11 @@ export const addFavThunk =  (idUser, idItem, method) => async (dispatch) => {
     }
 }
 // добавление в корзину
-export const addCartThunk = (idUser,idItem,size,count,price,picture) => async (dispatch) =>{
-    const response = await authAPI.addCart(idUser,idItem,size,count,price,picture)
-    if(response.data.resaultCode === 0){
+export const addCartThunk = (idUser, idItem, size, count, price, picture) => async (dispatch) => {
+    const response = await authAPI.addCart(idUser, idItem, size, count, price, picture)
+    if (response.data.resaultCode === 0) {
         dispatch(setCart(response.data.cart))
-    }else{
+    } else {
         dispatch(errorMessage(response.data.message))
     }
 }

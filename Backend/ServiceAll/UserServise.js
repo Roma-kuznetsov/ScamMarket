@@ -164,15 +164,15 @@ class UserService {
             const itemSizeCount = await CardProducts.findById(data.cart)
             console.log(itemSizeCount)
             // генерируем idField
-            const fieldId = `f${(~~(Math.random() * 1e10)).toString(16)}`;
+            const fieldId = `f${(~~(Math.random() * 2e20)).toString(16)}`;
             // формируем объект из полученных данных
             let secyryObj = {
                 itemId: data.cart,
                 size: data.cartSize,
                 count: data.count,
-                price:data.price,
-                picture:`http://localhost:3001/${data.picture}`,
-                nalic:itemSizeCount[`${data.cartSize}Count`],
+                price: data.price,
+                picture: `http://localhost:3001/${data.picture}`,
+                nalic: itemSizeCount[`${data.cartSize}Count`],
                 fieldId
             }
             //проверяем существует ли новый объект в массиве или нет
@@ -180,29 +180,17 @@ class UserService {
                 JSON.stringify({ itemId: data.cart, size: data.cartSize }))
             //если объекта в массиве нет то вернется [] length 0
             if (fitration.length > 0) {
+                //если такой объект уже существует
+                // находим его fieldId и модифицируем
                 let idfield = fitration[0].fieldId
                 let index = obj.cart.findIndex(el => el.fieldId === idfield);
                 //default count = 1 
-                if (data.count === 1) {
-                    secyryObj.count = obj.cart[index].count + 1
-                    obj.cart.push(secyryObj)
-                    obj.cart.splice(index, 1); // 0 - индекс, 1 - кол-во удаляемых элементов
-                    await obj.save() // сохраняем новый obj в бд
-                    console.log(obj)
-                    return {
-                        cart: obj.cart,
-                        resaultCode: 0
-                    }
-                }else if(data.count > 1){
-                    secyryObj.count = data.count
-                    obj.cart.push(secyryObj)
-                    obj.cart.splice(index, 1); // 0 - индекс, 1 - кол-во удаляемых элементов
-                    await obj.save() // сохраняем новый obj в бд
-                    console.log(obj)
-                    return {
-                        cart: obj.cart,
-                        resaultCode: 0
-                    }
+                obj.cart[index].count = data.count
+                await obj.save() // сохраняем новый obj в бд
+                console.log(obj)
+                return {
+                    cart: obj.cart,
+                    resaultCode: 0
                 }
             }
             obj.cart.push(secyryObj)  // обращаемся к массиву внутри полученого объекта и добавляем новый элемент
@@ -219,35 +207,53 @@ class UserService {
     // удаление из корзины
     /*
     _id : передать account id
-    like: передать str (id товара)
+    fieldId: передать str (id поля)
     */
     async remCart(data) {
-        if (!data._id) {
-            throw new Error('id not found')
-        }
         try {
             const obj = await regForm.findById(data._id); // получаем объект
-            const index = obj.cart.indexOf(data.cart) // находим под каким индексом находится id
-            // если такого id не найденно в массиве
-            if (index === -1) {
+            let fitration = obj.cart.filter(i => JSON.stringify({ fieldId: i.fieldId }) ===
+                JSON.stringify({ fieldId: data.fieldId })) // сверяем fielId
+            if (fitration.length > 0) {
+                let idfield = fitration[0].fieldId
+                let index = obj.cart.findIndex(el => el.fieldId === idfield);
+                obj.cart.splice(index, 1); // удалить из массива элемент с этим id 
+                await obj.save()
+                console.log(obj)
                 return {
-                    resaultCode: 1,
-                    message: "nice try"
+                    resaultCode: 0,
+                    cart: obj.cart
                 }
             }
-            obj.cart.splice(index, 1); // удалить из массива элемент с этим id второй параметр говорит сколько будет удалено элементов
-            await obj.save() // сохранине изменений
-            console.log(obj)
-            // возвращение массива 
-            return {
-                resaultCode: 0,
-                cart: obj.cart
+        } catch (e) {
+            console.log(e)
+        }
+    }
+/*
+    _id : передать account id
+    fieldId: передать str (id поля)
+    count: num
+    */
+    async updateCart(data) {
+        try {
+            const obj = await regForm.findById(data._id); // получаем объект
+            let fitration = obj.cart.filter(i => JSON.stringify({ fieldId: i.fieldId }) ===
+                JSON.stringify({ fieldId: data.fieldId })) // сверяем fielId
+            if (fitration.length > 0) {
+                let idfield = fitration[0].fieldId
+                let index = obj.cart.findIndex(el => el.fieldId === idfield);
+                obj.cart[index].count = data.count
+                await obj.save()
+                console.log(obj)
+                return {
+                    resaultCode: 0,
+                    cart: obj.cart
+                }
             }
         } catch (e) {
             console.log(e)
         }
     }
 }
-
 
 export default new UserService();

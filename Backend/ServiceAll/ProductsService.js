@@ -51,35 +51,6 @@ class ProductsService {
             }
         }
     }
-    //получение cart
-    // принимаем id пользователя в query параметре
-    async getCartLoad(id) {
-        try {
-            // получаем пользователя 
-            const user = await regForm.findById(id)
-            //получение count
-            const count = user.cart.length
-            //делаем запрос по всем id которые хранятся у этого пользователя в cart
-            const cartId = user.cart.map(item => item.itemId)
-            const cart = await CardProducts.find({ _id: cartId }) 
-            console.log(cart) // array items
-            const totalPrice = cart.map(item => item.price).reduce((prev, curr) => prev + curr, 0);
-            console.log(totalPrice)
-            // возвращаем все найденые товары и их кол-во
-            return {
-                totalPrice,
-                resaultCode: 0,
-                count,
-                cart
-            }
-        } catch (e) {
-            console.log(e)
-            return {
-                message: "id not found {catch}",
-                resautCode: 1
-            }
-        }
-    }
 }
 
 

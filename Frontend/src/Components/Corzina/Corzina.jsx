@@ -1,9 +1,12 @@
 import React from "react";
-import { Container, Row, Col,Table } from 'react-bootstrap';
+import { Container, Row, Col, Table } from 'react-bootstrap';
 import CorzinaItem from "./CorzinaItem";
 
 const Corzina = (props) => {
-    debugger
+    let totalCount = props.cart
+        .map(i => i.price * i.count)
+        .reduce((prev, curr) => prev + curr, 0);
+    
     return (
         <Container>
             <Row>
@@ -20,9 +23,12 @@ const Corzina = (props) => {
                             </tr>
                         </thead>
                         <tbody>
-                    {props.cart.map((i) => <CorzinaItem key={i.fieldId} picture={i.picture} itemId={i.itemId} size={i.size} count={i.count} price={i.price}  /> )}
+                            {props.cart.map((i) => <CorzinaItem removeCart={props.removeCart} fieldId={i.fieldId} key={i.fieldId}
+                                picture={i.picture} itemId={i.itemId} size={i.size}
+                                count={i.count} price={i.price} />)}
                         </tbody>
                     </Table>
+                    <div>{totalCount}</div>
                 </Col>
             </Row>
         </Container>

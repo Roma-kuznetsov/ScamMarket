@@ -39,6 +39,10 @@ export const authAPI = {
     addCart(idUser,idItem,cartSize,count,price,picture){
         return axios.put('http://localhost:3001/api/setcart',
         {_id:idUser,cart:idItem,cartSize,count,price,picture})
+    },
+    removeCart(idUser,fieldId){
+        return axios.put('http://localhost:3001/api/removecart',
+        {_id:idUser,fieldId})
     }
 }
 

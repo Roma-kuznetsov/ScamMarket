@@ -68,6 +68,14 @@ class UserController {
             res.status(500).json(e.message)
         }
     }
+    async updateCart(req,res){
+        try{
+            const cart = await UserService.updateCart(req.body)
+            res.json(cart)
+        }catch(e){
+            res.status(500).json(e.message)
+        }
+    }
 }
 
 export default new UserController()
