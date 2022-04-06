@@ -1,12 +1,23 @@
 .picture{
     width: 80px;
+    height: 80px;
 }
 .flex{
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
-td{
-    margin: auto;
-    font-size: 18px;
+.pad{
+    padding: 0 1em 0 1em;
+    user-select: none;
+}
+.flexCount{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+p{
+    padding-top: 0.5em;
+    text-align: center;
 }

@@ -1,23 +1,28 @@
 import React from "react";
 import Corzina from './Corzina'
 import { connect } from 'react-redux';
-import {removeCartThunk} from '../../redux/authReducer'
+import {removeCartThunk,updateCartThunk} from '../../redux/authReducer'
 
 // контейнер для корзины
 
 class CorzinaContainer extends React.Component {
 
     removeCart = (fieldId) =>{
-        debugger
         this.props.removeCartThunk(this.props.userId,fieldId)
     }
 
+    updateCart = (fieldId,count) =>{
+        this.props.updateCartThunk(this.props.userId,fieldId,count)
+    }
+
+
     render() {
-        debugger
         return (
             <div>
                 {<Corzina cart={this.props.cart}
-                removeCart = {this.removeCart}/>}
+                removeCart = {this.removeCart}
+                updateCart={this.updateCart}
+                inProcces={this.props.inProcces}/>}
             </div>
         )
     }
@@ -25,12 +30,12 @@ class CorzinaContainer extends React.Component {
 
 
 const mapStateToProps = function (state) {
-    debugger
     return {
         cart: state.auth.profile.cart,
-        userId: state.auth.profile.id
+        userId: state.auth.profile.id,
+        inProcces:state.auth.inProcces
     }
 }
 
 
-export default connect(mapStateToProps, {removeCartThunk})(CorzinaContainer);
+export default connect(mapStateToProps, {removeCartThunk,updateCartThunk})(CorzinaContainer);

@@ -8,6 +8,7 @@ const ADD_FAV = "ADD_FAV"
 const SET_PROCCES = 'SET_PROCCES'
 const ADD_CART = "ADD_CART"
 const REMOVE_CART = "REMOVE_CART"
+const UPDATE_CART = "UPDATE_CART"
 
 
 let initialState = {
@@ -67,6 +68,14 @@ const authReducer = (state = initialState, action) => {
                     cart: [...action.cartArr]
                 }
             }
+        case UPDATE_CART:
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    cart: [...action.cartArr]
+                }
+            }
         case SET_PROCCES:
             return {
                 ...state,
@@ -86,8 +95,19 @@ export const logout = () => ({ type: LOGOUT })
 export const setError = () => ({ type: SET_ERROR })
 const setCart = (cartArr) => ({ type: ADD_CART, cartArr })
 const removeCart = (cartArr) => ({ type: REMOVE_CART, cartArr })
+const updateCart = (cartArr) => ({ type: UPDATE_CART, cartArr })
 const toggleinProcces = (isProcces) => ({ type: SET_PROCCES, isProcces })
 
+
+// изменение count Из корзины 
+export const updateCartThunk = (_id, fieldId, count) => async (dispatch) => {
+    dispatch(toggleinProcces(true))
+    const response = await authAPI.updateCart(_id, fieldId, count)
+    if (response.data.resaultCode === 0) {
+        dispatch(updateCart(response.data.cart))
+    }
+    dispatch(toggleinProcces(false))
+}
 //удаление из корзины
 export const removeCartThunk = (idUser, fieldId) => async (dispatch) => {
     const response = await authAPI.removeCart(idUser, fieldId)

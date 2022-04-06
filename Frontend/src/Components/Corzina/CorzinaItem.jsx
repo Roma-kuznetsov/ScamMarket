@@ -1,19 +1,42 @@
-import React from "react"
+import React,{useState} from "react"
 import s from './Corzine.module.css'
-import {BsFillTrashFill} from "react-icons/bs"
+import { BsFillTrashFill } from "react-icons/bs"
 import { Button } from "react-bootstrap"
 
 const CorzinaItem = (props) => {
-    const {picture,size,itemId,count,price,fieldId} = props
+// можно передавать параметром method и не писать второй раз но кому это надо
+    const buttonMinCount = () => {
+        if (props.count === 1) {
+            return false
+        } else {
+            props.updateCart(props.fieldId,props.count-1)
+        }
+    }
+    const buttonMaxCount = () => {
+        if (props.count === props.nalic) {
+            return false
+        } else {
+            props.updateCart(props.fieldId,props.count+1)
+        }
+    }
     return (
         <tr >
-            <td className={s.flex}><img className={s.picture} src={picture} alt="" /> 
-            <Button variant="danger" onClick={()=>{props.removeCart(fieldId)}}><BsFillTrashFill size={13} /></Button> </td>
-            <td className={s.td} >{size} </td>
-            <td>{itemId}</td>
-            <td>{count}</td>
-            <td>{price}</td>
-            <td>{price * count}</td>
+            <td className={s.flex}><img className={s.picture} src={props.picture} alt="" />
+                <Button size="sm" variant="danger" onClick={() => { props.removeCart(props.fieldId) }}><BsFillTrashFill size={13} /></Button> </td>
+            <td className={s.td} >{props.size} </td>
+            <td>{props.itemId}</td>
+            <td >
+                <div className={s.flexCount}>
+                    <Button disabled={props.inProcces} onClick={()=>{buttonMinCount()}} size="sm" variant="primary">-</Button>
+                    <div className={s.pad}>
+                        {props.count}
+                    </div>
+                    <Button disabled={props.inProcces} onClick={()=>{buttonMaxCount()}} size="sm" variant="primary" >+</Button>
+                </div>
+                <p>В наличии {props.nalic}</p>
+            </td>
+            <td>{props.price}$</td>
+            <td>{props.price * props.count}$</td>
         </tr>
     )
 }

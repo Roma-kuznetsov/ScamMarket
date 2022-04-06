@@ -6,12 +6,12 @@ const Corzina = (props) => {
     let totalCount = props.cart
         .map(i => i.price * i.count)
         .reduce((prev, curr) => prev + curr, 0);
-    
+
     return (
         <Container>
             <Row>
                 <Col>
-                    <Table striped bordered hover >
+                    <Table responsive="md" striped bordered hover >
                         <thead>
                             <tr>
                                 <th>Изображение</th>
@@ -23,12 +23,13 @@ const Corzina = (props) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {props.cart.map((i) => <CorzinaItem removeCart={props.removeCart} fieldId={i.fieldId} key={i.fieldId}
+                            {props.cart.map((i) => <CorzinaItem inProcces={props.inProcces} updateCart={props.updateCart} nalic={i.nalic}
+                                removeCart={props.removeCart} fieldId={i.fieldId} key={i.fieldId}
                                 picture={i.picture} itemId={i.itemId} size={i.size}
                                 count={i.count} price={i.price} />)}
                         </tbody>
                     </Table>
-                    <div>{totalCount}</div>
+                    <div>Итоговая сумма {totalCount}$</div>
                 </Col>
             </Row>
         </Container>
