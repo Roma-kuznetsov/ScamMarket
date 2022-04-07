@@ -19,6 +19,7 @@ class App extends React.Component {
     componentDidMount() {
         this.props.initializeApp()
     }
+    
     render() {
         if (!this.props.initialized) {
             return <Preloader />
@@ -29,7 +30,8 @@ class App extends React.Component {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/home" element={<Home />} />
-                    <Route path="/short" element={<ContainerProducts />} />
+                    <Route path="/tshirt" element={<ContainerProducts type={'tshirt'} />} />
+                    <Route path="/hoody" element={<ContainerProducts type={'hoody'} />} />
                     <Route path="/favorits" element={<ContainerFavorits />} />
                     <Route path="/sweat" element={<TshitrPage image={sweat} />} />
                     <Route path="/corzina" element={<CorzinaContainer />} />

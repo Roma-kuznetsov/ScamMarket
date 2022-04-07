@@ -50,8 +50,8 @@ const HeaderNav = (props) => {
                                     <Nav.Link as="div"><div><NavLink className={s.accountLink} to={'/about'}>
                                         О нас</NavLink></div ></Nav.Link>
                                     <NavDropdown title="Товары" id="collasible-nav-dropdown">
-                                        <DropDownItem name={"Футболки"} path={'/short'} />
-                                        <DropDownItem name={"Толстовки"} path={'/sweat'} />
+                                        <DropDownItem name={"Футболки"} path={'/tshirt'} />
+                                        <DropDownItem name={"Толстовки"} path={'/hoody'} />
                                         <DropDownItem name={"Custom"} path={'/custom'} />
                                         <NavDropdown.Divider />
                                         <DropDownItem name={"Мать матвея"} path={'/matmatveya'} />

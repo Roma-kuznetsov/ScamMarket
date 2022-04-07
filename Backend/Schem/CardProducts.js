@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const ProductsTShirt = new mongoose.Schema({
     price: { type: Number, required: true },
+    type:{type: String, required: true},
     picture: { type: String },
     xxsCount: { type: Number },
     xsCount: { type: Number },

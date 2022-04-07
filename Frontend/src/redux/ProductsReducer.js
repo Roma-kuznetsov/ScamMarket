@@ -74,9 +74,9 @@ export const getFavorits = (favorits) => async (dispatch) =>{
 
 }
 
-export const getTovars = (pageSize, currentPage) => {
+export const getTovars = (pageSize, currentPage,type) => {
     return async (dispatch) => {
-        let response = await productsAPI.getTShirt(pageSize, currentPage)
+        let response = await productsAPI.getTShirt(pageSize, currentPage,type)
         dispatch(setTovars(response.data.products));
         dispatch(setCurrentPage(pageSize)); // на самом деле тут pageSize принимает номер страницы
         dispatch(setCount(response.data.count))

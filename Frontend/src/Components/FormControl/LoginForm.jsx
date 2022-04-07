@@ -22,16 +22,17 @@ const LoginForm = (props) => {
             >
                 {({ handleSubmit, isValid, dirty }) => (
                     <Form onSubmit={handleSubmit}>
-                        {/*Field block */}
-                        <FormTextField controlId="email" label="Email"
-                            type="text" name="email" />
+                        <Modal.Body>
+                            {/*Field block */}
+                            <FormTextField controlId="email" label="Email"
+                                type="text" name="email" />
 
-                        <FormTextField
-                            controlId="password" label="Придумайте пароль"
-                            type="password" name="password" />
-                        {/* errorMessage applay */}
-                        <p style={{ color: "red" }}>{props.errorMessage}</p>
-
+                            <FormTextField
+                                controlId="password" label="Придумайте пароль"
+                                type="password" name="password" />
+                            {/* errorMessage applay */}
+                            <p style={{ color: "red" }}>{props.errorMessage}</p>
+                        </Modal.Body>
                         <Modal.Footer>
                             <Button disabled={!isValid || !dirty} type="submit">Войти</Button>
                         </Modal.Footer>

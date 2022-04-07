@@ -14,8 +14,8 @@ class ProductsService {
     // получение всех продуктов 
     async getAll(data) {
         const skiping = data.count * data.page // нужное кол-во пользователей * номер страницы
-        const products = await CardProducts.find().skip(skiping - data.count).limit(data.count);
-        const count = await CardProducts.find().count()
+        const products = await CardProducts.find({type:data.type}).skip(skiping - data.count).limit(data.count);
+        const count = await CardProducts.find({type:data.type}).count()
         console.log(skiping)
         return {
             products,
@@ -25,6 +25,7 @@ class ProductsService {
     // получение одного продукта
     async getOne(id) {
         const products = await CardProducts.findById(id)
+        console.log(products)
         return products
     }
 

@@ -5,7 +5,6 @@ import s from './oneProd.module.css'
 import ButtonLike from "../../ButtonsFrarment/ButtonLike";
 import Preloader from "../../ButtonsFrarment/Preloader";
 const OneProdPage = (props) => {
-    debugger
     const [size, setSize] = useState(null);
     const [count, setCount] = useState(1)
 
@@ -32,11 +31,11 @@ const OneProdPage = (props) => {
         }
     }
 
-    const buttonSubmit = (idUser, itemId, size, count,price,picture) => {
+    const buttonSubmit = (idUser, itemId, size, count, price, picture) => {
         if (size === null || size === 'Вам нужно выбрать размер') {
             setSize('Вам нужно выбрать размер')
         } else {
-            props.addCartThunk(idUser, itemId, size, count,price,picture)
+            props.addCartThunk(idUser, itemId, size, count, price, picture)
         }
     }
 
@@ -45,9 +44,12 @@ const OneProdPage = (props) => {
             <Row>
                 <Col sm={12} xxl={4} lg={5} md={6} >
                     <Card style={{ width: '18rem', margin: 'auto' }}>
-                        {props.isFaching ? <div style={{ height: "18rem" }}><Preloader /></div> :
-                            <Card.Img variant="top" src={`http://localhost:3001/${props.selectedItem.picture}`} style={{ height: "18rem" }} />
-                        }
+
+                        {props.selectedItem.picture ? 
+                        <Card.Img variant="top" src={`http://localhost:3001/${props.selectedItem.picture}`} 
+                        style={{ height: "18rem" }} /> 
+                        :<div style={{ height: "18rem" }}><Preloader /></div>}
+                        
                     </Card>
                 </Col>
 
@@ -72,7 +74,10 @@ const OneProdPage = (props) => {
                                 {count}
                             </div>
                             <Button variant="primary" onClick={() => buttonMaxCount()}>+</Button>
-                            <Button variant="primary" onClick={() => { buttonSubmit(props.idUser, props.selectedItem._id, size, count,props.selectedItem.price,props.selectedItem.picture) }}>
+                            <Button variant="primary" onClick={() => {
+                                buttonSubmit(props.idUser, props.selectedItem._id, size,
+                                    count, props.selectedItem.price, props.selectedItem.picture)
+                            }}>
                                 Add to cart</Button>
                             <ButtonLike idUser={props.idUser} addFavThunk={props.addFavThunk}
                                 favorites={props.favorites} id={props.selectedItem._id} />

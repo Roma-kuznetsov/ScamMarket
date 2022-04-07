@@ -9,10 +9,15 @@ import { addFavThunk } from "../../redux/authReducer"
 class ContainerProducts extends React.Component {
 
     componentDidMount() {
-        this.props.getTovars(this.props.currentPage, this.props.pageSize)
+        this.props.getTovars(this.props.currentPage, this.props.pageSize, this.props.type)
+    }
+    componentDidUpdate(prevProps) {
+        if (prevProps.type !== this.props.type) {
+            this.props.getTovars(this.props.currentPage, this.props.pageSize, this.props.type)
+        }
     }
     onPageChanged = (pageNumber) => {
-        this.props.getTovars(pageNumber, this.props.pageSize);
+        this.props.getTovars(pageNumber, this.props.pageSize,this.props.type);
     }
 
     render() {

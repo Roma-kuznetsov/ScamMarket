@@ -24,4 +24,5 @@ const ProductsItem = (props) => {
     )
 }
 
+
 export default ProductsItem;

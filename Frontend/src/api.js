@@ -2,16 +2,14 @@ import axios from "axios"
 
 
 export const productsAPI = {
-    getTShirt(currentPage = 1, pageSize = 16) {
-        return axios.get(`http://localhost:3001/api/productstshirt?count=${pageSize}&page=${currentPage}`)
+    getTShirt(currentPage = 1, pageSize = 16,type) {
+        return axios.get(`http://localhost:3001/api/productstshirt?count=${pageSize}&page=${currentPage}&type=${type}`)
     },
 
     getOneTShirt(itemId) {
-        debugger
         return axios.get(`http://localhost:3001/api${itemId}`)
     },
     getFavorits(userId){
-        debugger
         return axios.get(`http://localhost:3001/api/favorits?id=${userId}`)
     }
 }

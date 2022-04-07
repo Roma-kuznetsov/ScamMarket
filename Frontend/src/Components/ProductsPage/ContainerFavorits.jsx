@@ -3,6 +3,7 @@ import React from 'react';
 import TshitrPage from './Tshirt/TshitrPage';
 import { setCurrentPage, setItem,getFavorits } from "../../redux/ProductsReducer";
 import { addFavThunk } from "../../redux/authReducer"
+import { Navigate } from "react-router-dom"
 
 
 class ContainerProducts extends React.Component {
@@ -18,11 +19,6 @@ class ContainerProducts extends React.Component {
             this.props.getFavorits(this.props.userId)
         }
     }
-    /*
-    onPageChanged = (pageNumber) => {
-        this.props.getTovars(pageNumber, this.props.pageSize);
-    }
-    */
 
     select = (id) => {
         this.props.setItem(id)
@@ -45,7 +41,6 @@ class ContainerProducts extends React.Component {
                 onPageChanged={this.onPageChanged}
                 /> 
                 :<Navigate to="/home"/> }
-                
             </div>
         )
     }
