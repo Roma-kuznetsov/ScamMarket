@@ -46,10 +46,10 @@ const productsReducer = (state = initialState, action) => {
                 body: [...action.data]
             }
         }
-        case SET_COUNT:{
-            return{
+        case SET_COUNT: {
+            return {
                 ...state,
-                totalItemsCount:action.num
+                totalItemsCount: action.num
             }
         }
         default:
@@ -63,20 +63,20 @@ export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, curren
 export const setItemCreator = (data) => ({ type: SET_ITEM, data })
 const toggleIsFaching = (isFaching) => ({ type: TOGGLE_IS_FACHING, isFaching })
 const setFavorits = (data) => ({ type: SET_FAVORITS, data })
-const setCount = (num) =>({type:SET_COUNT,num})
+const setCount = (num) => ({ type: SET_COUNT, num })
 
-export const getFavorits = (favorits) => async (dispatch) =>{
-    let response = await productsAPI.getFavorits(favorits)
-    if(response.data.resaultCode === 0){
+export const getFavorits = (favorits, pageSize, currentPage) => async (dispatch) => {
+    let response = await productsAPI.getFavorits(favorits, pageSize, currentPage)
+    if (response.data.resaultCode === 0) {
         dispatch(setFavorits(response.data.favorits))
         dispatch(setCount(response.data.count))
     }
 
 }
 
-export const getTovars = (pageSize, currentPage,type) => {
+export const getTovars = (pageSize, currentPage, type) => {
     return async (dispatch) => {
-        let response = await productsAPI.getTShirt(pageSize, currentPage,type)
+        let response = await productsAPI.getTShirt(pageSize, currentPage, type)
         dispatch(setTovars(response.data.products));
         dispatch(setCurrentPage(pageSize)); // на самом деле тут pageSize принимает номер страницы
         dispatch(setCount(response.data.count))

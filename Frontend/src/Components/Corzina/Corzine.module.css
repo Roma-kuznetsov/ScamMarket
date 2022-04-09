@@ -21,3 +21,13 @@ p{
     padding-top: 0.5em;
     text-align: center;
 }
+.nullCart{
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+.map{
+    display: flex;
+    justify-content: center;
+}

@@ -14,12 +14,13 @@ import { connect, Provider } from 'react-redux';
 import Preloader from './Components/ButtonsFrarment/Preloader';
 import { initializeApp } from './redux/appReducer'
 import CorzinaContainer from './Components/Corzina/CorzinaContainer';
+import WigetYandex from './Components/Decoration/WigetYandex';
 
 class App extends React.Component {
     componentDidMount() {
         this.props.initializeApp()
     }
-    
+
     render() {
         if (!this.props.initialized) {
             return <Preloader />
@@ -38,6 +39,7 @@ class App extends React.Component {
                     <Route path="/test" element={<ContainerProducts />} />
                     <Route path="/products/:id" element={<OneProdPageContainer />} />
                     <Route path="/account" element={<AccountContainer />} />
+                    <Route path="/decoration" element={<WigetYandex />} />
                 </Routes>
                 <Footer2 />
             </BrowserRouter>

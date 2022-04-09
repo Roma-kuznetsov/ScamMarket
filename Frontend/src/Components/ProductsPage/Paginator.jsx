@@ -3,6 +3,7 @@ import { Container, Row, Col, Pagination } from "react-bootstrap";
 
 // display one brand
 const Paginator = (props) => {
+    debugger
     let active = props.currentPage
     let items = [];
     for (let number = 1; number <= props.pageCount; number++) {
