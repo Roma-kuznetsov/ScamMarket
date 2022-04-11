@@ -9,9 +9,9 @@ import { Navigate } from "react-router-dom"
 class ContainerProducts extends React.Component {
 
     componentDidMount() {
-        debugger
         if (this.props.isAuth) {
             this.props.getFavorits(this.props.userId, 1, this.props.pageSize)
+            window.scrollTo(0,300)
         }
     }
 
@@ -23,6 +23,7 @@ class ContainerProducts extends React.Component {
     onPageChanged = (pageNumber) => {
         this.props.getFavorits(this.props.userId, pageNumber, this.props.pageSize);
         this.props.setCurrentPage(pageNumber)
+        
     }
 
     render() {
@@ -39,6 +40,9 @@ class ContainerProducts extends React.Component {
                         setCurrentPage={this.props.setCurrentPage}
                         setItem={this.props.setItem}
                         onPageChanged={this.onPageChanged}
+                        isFaching={this.props.isFaching}
+                        inProcces={this.props.inProcces}
+
                     />
                     : <Navigate to="/home" />}
             </div>
@@ -55,7 +59,10 @@ const mapStateToProps = (state) => {
         favorites: state.auth.profile.like,
         currentPage: state.products.currentPage,
         pageSize: state.products.pageSize,
-        totalItemsCount: state.products.totalItemsCount
+        totalItemsCount: state.products.totalItemsCount,
+        isFaching: state.products.isFaching,
+        inProcces:state.auth.inProcces
+
     }
 }
 

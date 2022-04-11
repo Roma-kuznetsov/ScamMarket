@@ -9,6 +9,8 @@ const ProductsList = (props) => {
             <Container>
                 <Row>
                     {props.body.map(p => <ProductsItem price={p.price} image={p.picture}
+                        isFaching={props.isFaching}
+                        inProcces={props.inProcces}
                         brand={p.brand} key={p._id} id={p._id}
                         favorites={props.favorites}
                         addFavThunk={props.addFavThunk}

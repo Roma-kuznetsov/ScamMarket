@@ -20,8 +20,8 @@ const CorzinaItem = (props) => {
         }
     }
     return (
-        <tr >
-            <td className={s.flex}><img className={s.picture} src={props.picture} alt="" />
+        <tr>
+            <td className={s.flex}><img className={s.picture} src={`https://serene-thicket-20705.herokuapp.com/${props.picture}`} alt="" />
                 <Button size="sm" variant="danger" onClick={() => { props.removeCart(props.fieldId) }}><BsFillTrashFill size={13} /></Button> </td>
             <td className={s.td} >{props.size} </td>
             <td>{props.itemId}</td>

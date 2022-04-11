@@ -31,3 +31,15 @@ p{
     display: flex;
     justify-content: center;
 }
+.pred{
+    text-align: center;
+    padding-top: 10px;
+    margin-bottom: 30px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.radioGroup{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

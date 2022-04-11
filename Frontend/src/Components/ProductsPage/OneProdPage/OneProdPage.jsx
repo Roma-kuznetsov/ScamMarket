@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import React, { useState, useRef } from "react";
+import { Container, Row, Col, Card, Button, Overlay } from "react-bootstrap";
 import SelectedSizeItem from "./selectedSize";
 import s from './oneProd.module.css'
 import ButtonLike from "../../ButtonsFrarment/ButtonLike";
@@ -7,6 +7,8 @@ import Preloader from "../../ButtonsFrarment/Preloader";
 const OneProdPage = (props) => {
     const [size, setSize] = useState(null);
     const [count, setCount] = useState(1)
+    const [show, setShow] = useState(false);
+    const target = useRef(null);
 
     const nullCount = (inputSize) => {
         if (size !== inputSize) {
@@ -36,6 +38,8 @@ const OneProdPage = (props) => {
             setSize('Вам нужно выбрать размер')
         } else {
             props.addCartThunk(idUser, itemId, size, count, price, picture)
+            setShow(true)
+            setTimeout(() => { setShow(false) }, 1000)
         }
     }
 
@@ -45,11 +49,10 @@ const OneProdPage = (props) => {
                 <Col sm={12} xxl={4} lg={5} md={6} >
                     <Card style={{ width: '18rem', margin: 'auto' }}>
 
-                        {props.selectedItem.picture ? 
-                        <Card.Img variant="top" src={`http://localhost:3001/${props.selectedItem.picture}`} 
-                        style={{ height: "18rem" }} /> 
-                        :<div style={{ height: "18rem" }}><Preloader /></div>}
-                        
+                        {props.selectedItem.picture ?
+                            <Card.Img variant="top" src={`https://serene-thicket-20705.herokuapp.com/${props.selectedItem.picture}`}
+                                style={{ height: "18rem" }} />
+                            : <div style={{ height: "18rem" }}><Preloader /></div>}
                     </Card>
                 </Col>
 
@@ -74,12 +77,28 @@ const OneProdPage = (props) => {
                                 {count}
                             </div>
                             <Button variant="primary" onClick={() => buttonMaxCount()}>+</Button>
-                            <Button variant="primary" onClick={() => {
+
+                            <Button variant="primary" ref={target} onClick={() => {
                                 buttonSubmit(props.idUser, props.selectedItem._id, size,
                                     count, props.selectedItem.price, props.selectedItem.picture)
-                            }}>
-                                Add to cart</Button>
-                            <ButtonLike idUser={props.idUser} addFavThunk={props.addFavThunk}
+                            }}>Add to cart
+                            </Button>
+                            <Overlay target={target.current} show={show} placement="bottom">
+                                {({ placement, arrowProps, show: _show, popper, ...props }) => (
+                                    <div {...props} style={{
+                                            position: 'absolute',
+                                            backgroundColor: 'rgba(0,255,98,0.75)',
+                                            padding: '2px 10px',
+                                            color: 'black',
+                                            borderRadius: 3,
+                                            ...props.style,
+                                        }}>
+                                        Добавлено в корзину
+                                    </div>
+                                )}
+                            </Overlay>
+
+                            <ButtonLike inProcces={props.inProcces} idUser={props.idUser} addFavThunk={props.addFavThunk}
                                 favorites={props.favorites} id={props.selectedItem._id} />
                         </div>}
                 </Col>
@@ -87,7 +106,7 @@ const OneProdPage = (props) => {
         </Container>
     )
 }
-//<input  type="number" min={1} max={props.selectedItem[`${size}Count`]} value={count} onChange={(event) => setCount(event.target.value)} />
+
 export default OneProdPage;
 
 
@@ -96,4 +115,3 @@ export default OneProdPage;
 
 
 
-//{props.selectedItem[`${size}Count`]}

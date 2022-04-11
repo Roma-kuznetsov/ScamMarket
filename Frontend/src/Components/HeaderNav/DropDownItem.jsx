@@ -5,7 +5,7 @@ import s from './header.module.css'
 
 const DropDownItem = (props) => {
     return (
-        <NavLink className={s.otherLink} to={props.path}>
+        <NavLink onClick={()=>{props.setCollapse(false)}} className={s.otherLink} to={props.path}>
             <NavDropdown.Item as="div" >{props.name}</NavDropdown.Item>
         </NavLink>
     )

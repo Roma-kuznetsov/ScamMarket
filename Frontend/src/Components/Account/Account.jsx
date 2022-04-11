@@ -18,8 +18,6 @@ const Account = (props) => {
 
                     </div>
                     <div className={s.buttons}>
-                        <NavLink to={'/notifications'}><Button>Уведомления <Badge bg="danger"></Badge></Button></NavLink>
-                        <NavLink to={'/settings'}><Button>Настройки<FcSettings size={20} /></Button></NavLink>
                         <NavLink to={'/favorits'}><Button>Избранное<FcLike size={20} /></Button></NavLink>
                     </div>
 

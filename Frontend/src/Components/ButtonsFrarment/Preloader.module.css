@@ -1,7 +1,18 @@
 .spiner{
-    margin-top: 50%;
-    margin-left: 50%;
+    margin-top: 45%;
+    margin-left: 45%;
+    height: 9rem;
 }
 .row{
     margin-bottom: 300px;
+}
+.scam{
+    padding-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.scamButton{
+    display: flex;
+    justify-content: center;
 }

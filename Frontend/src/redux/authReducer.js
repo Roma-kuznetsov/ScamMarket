@@ -78,7 +78,14 @@ export const setError = () => ({ type: SET_ERROR })
 const setCart = (cartArr) => ({ type: ADD_CART, cartArr })
 const toggleinProcces = (isProcces) => ({ type: SET_PROCCES, isProcces })
 
+// полное удаление корзины
+export const clearCartThunk = (id) => async (dispatch) =>{
+    dispatch(toggleinProcces(true))
+    const response = await authAPI.clearCart(id)
+    dispatch(setCart(response.data.cart))
+    dispatch(toggleinProcces(false))
 
+}
 // изменение count Из корзины 
 export const updateCartThunk = (_id, fieldId, count) => async (dispatch) => {
     dispatch(toggleinProcces(true))
@@ -99,11 +106,15 @@ export const removeCartThunk = (idUser, fieldId) => async (dispatch) => {
 // добавление/удаление из избранного
 export const addFavThunk = (idUser, idItem, method) => async (dispatch) => {
     if (method === 'ADD') {
+        dispatch(toggleinProcces(true))
         let response = await authAPI.addFav(idUser, idItem)
         dispatch(refreshFav(response.data.like))
+        dispatch(toggleinProcces(false))
     } else if (method === 'DEL') {
+        dispatch(toggleinProcces(true))
         let response = await authAPI.removeFav(idUser, idItem)
         dispatch(refreshFav(response.data.like))
+        dispatch(toggleinProcces(false))
     }
 }
 // добавление в корзину

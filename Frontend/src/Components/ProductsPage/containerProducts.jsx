@@ -10,6 +10,7 @@ class ContainerProducts extends React.Component {
 
     componentDidMount() {
         this.props.getTovars(1, this.props.pageSize, this.props.type)
+        window.scrollTo(0,300)
     }
     componentDidUpdate(prevProps) {
         if (prevProps.type !== this.props.type) {
@@ -32,6 +33,8 @@ class ContainerProducts extends React.Component {
                     favorites={this.props.favorites}
                     addFavThunk={this.props.addFavThunk}
                     idUser={this.props.idUser}
+                    isFaching={this.props.isFaching}
+                    inProcces={this.props.inProcces}
                 />
             </div>
         )
@@ -47,7 +50,9 @@ const mapStateToProps = (state) => {
         totalItemsCount: state.products.totalItemsCount,
         selectedItem: state.products.selectedItem,
         favorites: state.auth.profile.like,
-        idUser: state.auth.profile.id
+        idUser: state.auth.profile.id,
+        isFaching:state.products.isFaching,
+        inProcces:state.auth.inProcces
     }
 }
 

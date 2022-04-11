@@ -10,7 +10,7 @@ const TshitrPage = (props) => {
             <Sponsors />
             <ProductsList idUser={props.idUser}
                 addFavThunk={props.addFavThunk}
-                favorites={props.favorites} body={props.body} />
+                favorites={props.favorites} body={props.body} isFaching={props.isFaching} inProcces={props.inProcces} />
 
             {pageCount > 1 ?
                 <Paginator onPageChanged={props.onPageChanged} pageCount={pageCount}

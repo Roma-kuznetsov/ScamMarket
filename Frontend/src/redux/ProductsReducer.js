@@ -66,7 +66,9 @@ const setFavorits = (data) => ({ type: SET_FAVORITS, data })
 const setCount = (num) => ({ type: SET_COUNT, num })
 
 export const getFavorits = (favorits, pageSize, currentPage) => async (dispatch) => {
+    dispatch(toggleIsFaching(true))
     let response = await productsAPI.getFavorits(favorits, pageSize, currentPage)
+    dispatch(toggleIsFaching(false))
     if (response.data.resaultCode === 0) {
         dispatch(setFavorits(response.data.favorits))
         dispatch(setCount(response.data.count))
@@ -76,7 +78,9 @@ export const getFavorits = (favorits, pageSize, currentPage) => async (dispatch)
 
 export const getTovars = (pageSize, currentPage, type) => {
     return async (dispatch) => {
+        dispatch(toggleIsFaching(true))
         let response = await productsAPI.getTShirt(pageSize, currentPage, type)
+        dispatch(toggleIsFaching(false))
         dispatch(setTovars(response.data.products));
         dispatch(setCurrentPage(pageSize)); // на самом деле тут pageSize принимает номер страницы
         dispatch(setCount(response.data.count))

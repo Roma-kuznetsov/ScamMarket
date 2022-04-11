@@ -8,10 +8,8 @@ const Partners = () => {
     return (
         <Container style={{ paddingTop: "2rem", paddingBottom: "2rem" }}>
             <Row>
-                <OneCard />
-                <OneCard />
-                <OneCard />
-                <OneCard />
+                <OneCard name={'Футболки'} path={'/tshirt'} />
+                <OneCard name={'Толстовки'} path={'/hoody'}/>
             </Row>
         </Container>
     )

@@ -23,7 +23,8 @@ class OneProdPageContainer extends React.Component {
                         isFaching={this.props.isFaching}
                         idUser={this.props.idUser}
                         addCartThunk={this.props.addCartThunk}
-                        addFavThunk={this.props.addFavThunk} />
+                        addFavThunk={this.props.addFavThunk}
+                        inProcces={this.props.inProcces} />
                     : <Preloader />}
             </div>
         )
@@ -37,6 +38,7 @@ const mapStateToProps = function (state) {
         favorites: state.auth.profile.like,
         isFaching: state.products.isFaching,
         idUser: state.auth.profile.id,
+        inProcces: state.auth.inProcces
     }
 }
 

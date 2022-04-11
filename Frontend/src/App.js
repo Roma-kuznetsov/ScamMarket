@@ -15,6 +15,7 @@ import Preloader from './Components/ButtonsFrarment/Preloader';
 import { initializeApp } from './redux/appReducer'
 import CorzinaContainer from './Components/Corzina/CorzinaContainer';
 import WigetYandex from './Components/Decoration/WigetYandex';
+import Scam from './Components/ButtonsFrarment/Scam';
 
 class App extends React.Component {
     componentDidMount() {
@@ -40,6 +41,7 @@ class App extends React.Component {
                     <Route path="/products/:id" element={<OneProdPageContainer />} />
                     <Route path="/account" element={<AccountContainer />} />
                     <Route path="/decoration" element={<WigetYandex />} />
+                    <Route path="/scam" element={<Scam />} />
                 </Routes>
                 <Footer2 />
             </BrowserRouter>
