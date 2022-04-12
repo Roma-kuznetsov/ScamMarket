@@ -1,6 +1,6 @@
 import React from 'react';
 import store from "./redux/store"
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
 import Footer2 from './Components/Footer/Footer2';
 import Home from './Components/Home/Home';
 import ContainerProducts from './Components/ProductsPage/containerProducts';
@@ -27,7 +27,7 @@ class App extends React.Component {
             return <Preloader />
         }
         return (
-            <BrowserRouter>
+            <HashRouter>
                 <HeaderContainer />
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -44,7 +44,7 @@ class App extends React.Component {
                     <Route path="/komuJetoNado" element={<KomuEtoNado />} />
                 </Routes>
                 <Footer2 />
-            </BrowserRouter>
+            </HashRouter>
         )
     }
 }

@@ -10,8 +10,8 @@ import Preloader from '../../ButtonsFrarment/Preloader';
 class OneProdPageContainer extends React.Component {
 
     componentDidMount() {
-        const urlStr = window.location.pathname //берем id из урла
-        this.props.setItem(urlStr) // делаем запрос по этому id
+        const urlStr = window.location.hash //берем id из урла
+        this.props.setItem(urlStr.slice(1,urlStr.length)) // делаем запрос по этому id
         window.scrollTo(0,0)
     }
 
