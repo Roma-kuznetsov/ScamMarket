@@ -16,3 +16,10 @@
     display: flex;
     justify-content: center;
 }
+.img{
+    height: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 300px;
+}

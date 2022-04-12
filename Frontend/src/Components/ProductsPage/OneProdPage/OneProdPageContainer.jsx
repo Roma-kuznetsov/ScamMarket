@@ -12,6 +12,7 @@ class OneProdPageContainer extends React.Component {
     componentDidMount() {
         const urlStr = window.location.pathname //берем id из урла
         this.props.setItem(urlStr) // делаем запрос по этому id
+        window.scrollTo(0,0)
     }
 
     render() {

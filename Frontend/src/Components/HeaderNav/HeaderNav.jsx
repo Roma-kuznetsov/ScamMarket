@@ -56,15 +56,14 @@ const HeaderNav = (props) => {
                      <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto" style={{ marginLeft: "10px" }}>
 
-                           <Nav.Link as={NavLink} onClick={() => { setCollapse(false) }} to={'/about'} >
+                           <Nav.Link as={NavLink} onClick={() => { setCollapse(false) }} to={'/komuJetoNado'} >
                               О нас</Nav.Link>
 
                            <NavDropdown title="Товары" id="collasible-nav-dropdown">
                               <DropDownItem setCollapse={setCollapse} name={"Футболки"} path={'/tshirt'} />
-                              <DropDownItem setCollapse={setCollapse} name={"Толстовки"} path={'/hoody'} />
-                              <DropDownItem setCollapse={setCollapse} name={"Custom"} path={'/custom'} />
                               <NavDropdown.Divider />
-                              <DropDownItem setCollapse={setCollapse} name={"Мать матвея"} path={'/matmatveya'} />
+                              <DropDownItem setCollapse={setCollapse} name={"Толстовки"} path={'/hoody'} />
+
                            </NavDropdown>
                         </Nav>
                      </Navbar.Collapse>

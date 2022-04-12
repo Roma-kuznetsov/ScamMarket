@@ -1,7 +1,6 @@
 import React from "react";
 import { CgArrowLongRight } from "react-icons/cg";
 import { Col, Card, Button } from "react-bootstrap";
-import CardTitle from "../../../images/CardImage.svg"
 import { NavLink } from "react-router-dom";
 
 const OneCard = (props) => {

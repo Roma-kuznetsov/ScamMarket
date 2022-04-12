@@ -1,15 +1,10 @@
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 import s from "../Corzina/Corzine.module.css"
-import { clearCartThunk } from '../../redux/authReducer'
-import { connect } from 'react-redux';
-import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 
 const WigetYandex = (props) => {
-    const [variant, setVariant] = useState(1)
-
     let totalCount = props.cart
         .map(i => i.price * i.count)
         .reduce((prev, curr) => prev + curr, 0);
@@ -55,22 +50,22 @@ const WigetYandex = (props) => {
                                 type='radio'
                                 id='10r'
                                 label='Фантики'
-                                checked={variant === 1}
-                                onChange={() => { setVariant(1) }} />
+                                checked={props.variant === 1}
+                                onChange={() => { props.setVariant(1) }} />
                             <Form.Check
                                 name='body'
                                 type='radio'
                                 id='12r'
                                 label='Листики'
-                                checked={variant === 2}
-                                onChange={() => { setVariant(2) }} />
+                                checked={props.variant === 2}
+                                onChange={() => { props.setVariant(2) }} />
                             <Form.Check
                                 name='body'
                                 type='radio'
                                 id='13r'
                                 label='Чеканные монеты'
-                                checked={variant === 3}
-                                onChange={() => { setVariant(3) }} />
+                                checked={props.variant === 3}
+                                onChange={() => { props.setVariant(3) }} />
                         </Form>
                     </div>
                 </Col>
@@ -86,11 +81,5 @@ const WigetYandex = (props) => {
         </Container >
     )
 };
-const mapStateToProps = function (state) {
-    return {
-        cart: state.auth.profile.cart,
-        id: state.auth.profile.id
-    }
-}
 
-export default connect(mapStateToProps, { clearCartThunk })(WigetYandex);
+export default WigetYandex;

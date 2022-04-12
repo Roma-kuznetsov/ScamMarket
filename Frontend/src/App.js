@@ -3,8 +3,6 @@ import store from "./redux/store"
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Footer2 from './Components/Footer/Footer2';
 import Home from './Components/Home/Home';
-import TshitrPage from './Components/ProductsPage/Tshirt/TshitrPage';
-import sweat from './images/sweatshirt.jpg'
 import ContainerProducts from './Components/ProductsPage/containerProducts';
 import OneProdPageContainer from './Components/ProductsPage/OneProdPage/OneProdPageContainer';
 import HeaderContainer from './Components/HeaderNav/HeaderContainer';
@@ -14,8 +12,10 @@ import { connect, Provider } from 'react-redux';
 import Preloader from './Components/ButtonsFrarment/Preloader';
 import { initializeApp } from './redux/appReducer'
 import CorzinaContainer from './Components/Corzina/CorzinaContainer';
-import WigetYandex from './Components/Decoration/WigetYandex';
 import Scam from './Components/ButtonsFrarment/Scam';
+import WigetYandexContainer from './Components/Decoration/WigetYandexContainer';
+import KomuEtoNado from './Components/ButtonsFrarment/KomuEtoNado';
+import MatMatveya from './Components/ButtonsFrarment/MatMatveya';
 
 class App extends React.Component {
     componentDidMount() {
@@ -35,13 +35,13 @@ class App extends React.Component {
                     <Route path="/tshirt" element={<ContainerProducts type={'tshirt'} />} />
                     <Route path="/hoody" element={<ContainerProducts type={'hoody'} />} />
                     <Route path="/favorits" element={<ContainerFavorits />} />
-                    <Route path="/sweat" element={<TshitrPage image={sweat} />} />
                     <Route path="/corzina" element={<CorzinaContainer />} />
-                    <Route path="/test" element={<ContainerProducts />} />
+                    <Route path="/mat" element={<MatMatveya />} />
                     <Route path="/products/:id" element={<OneProdPageContainer />} />
                     <Route path="/account" element={<AccountContainer />} />
-                    <Route path="/decoration" element={<WigetYandex />} />
+                    <Route path="/decoration" element={<WigetYandexContainer />} />
                     <Route path="/scam" element={<Scam />} />
+                    <Route path="/komuJetoNado" element={<KomuEtoNado />} />
                 </Routes>
                 <Footer2 />
             </BrowserRouter>
