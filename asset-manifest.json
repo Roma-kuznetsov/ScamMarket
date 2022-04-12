@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ScamMarket/static/css/main.49be59e4.css",
-    "main.js": "/ScamMarket/static/js/main.58aa4cee.js",
+    "main.js": "/ScamMarket/static/js/main.a48bf569.js",
     "static/js/787.a86f3764.chunk.js": "/ScamMarket/static/js/787.a86f3764.chunk.js",
     "static/media/димыч.png": "/ScamMarket/static/media/димыч.eb693003d83892fc9764.png",
     "static/media/fi5swzcWN0c.jpg": "/ScamMarket/static/media/fi5swzcWN0c.1da6759642eedc48cc3e.jpg",
@@ -16,11 +16,11 @@
     "static/media/SecondSlide.svg": "/ScamMarket/static/media/SecondSlide.4ba0cf79c5dc264e914cf4707dbf080e.svg",
     "static/media/FirstSlide.svg": "/ScamMarket/static/media/FirstSlide.43723f9af83c971d71d64f2552f817d5.svg",
     "main.49be59e4.css.map": "/ScamMarket/static/css/main.49be59e4.css.map",
-    "main.58aa4cee.js.map": "/ScamMarket/static/js/main.58aa4cee.js.map",
+    "main.a48bf569.js.map": "/ScamMarket/static/js/main.a48bf569.js.map",
     "787.a86f3764.chunk.js.map": "/ScamMarket/static/js/787.a86f3764.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.49be59e4.css",
-    "static/js/main.58aa4cee.js"
+    "static/js/main.a48bf569.js"
   ]
 }
