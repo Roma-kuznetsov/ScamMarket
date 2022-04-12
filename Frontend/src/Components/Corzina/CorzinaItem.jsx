@@ -1,4 +1,4 @@
-import React,{useState} from "react"
+import React from "react"
 import s from './Corzine.module.css'
 import { BsFillTrashFill } from "react-icons/bs"
 import { Button } from "react-bootstrap"

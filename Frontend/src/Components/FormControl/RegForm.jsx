@@ -4,7 +4,6 @@ import * as yup from "yup";
 import { Formik } from 'formik';
 import FormTextField from "./FormTextField";
 import { authThank } from "../../redux/authReducer";
-import { auth } from "../../api";
 import { useDispatch } from "react-redux";
 
 

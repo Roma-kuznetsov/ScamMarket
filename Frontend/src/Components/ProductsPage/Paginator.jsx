@@ -1,7 +1,7 @@
-import React,{useLayoutEffect,useRef} from "react"
+import React from "react"
 import { Container, Row, Col, Pagination } from "react-bootstrap";
 
-// display one brand
+
 const Paginator = (props) => {
 
     const newPage= (number) =>{

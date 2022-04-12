@@ -13,7 +13,7 @@ const FormTextField = ({
 }) => {
     return (
         <Field name={name}>
-            {({ field, form, meta }) => {
+            {({ field, form }) => {
                 const isValid = !form.errors[field.name];
                 const isInvalid = form.touched[field.name] && !isValid;
                 return (
