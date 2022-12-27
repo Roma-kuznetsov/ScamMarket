@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const instance = 'https://serene-thicket-20705.herokuapp.com'
+const instance = 'backend-production-2ee6.up.railway.app'
 
 export const productsAPI = {
     getTShirt(currentPage = 1, pageSize = 16, type) {
@@ -47,7 +47,7 @@ export const authAPI = {
         return axios.put(`${instance}/api/updatecart`,
             { _id, fieldId, count })
     },
-    clearCart(id){
+    clearCart(id) {
         return axios.get(`${instance}/api/clearcart?id=${id}`)
     }
 }

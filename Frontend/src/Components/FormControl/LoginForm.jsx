@@ -28,7 +28,7 @@ const LoginForm = (props) => {
                                 type="text" name="email" />
 
                             <FormTextField
-                                controlId="password" label="Придумайте пароль"
+                                controlId="password" label="Пароль"
                                 type="password" name="password" />
                             {/* errorMessage applay */}
                             <p style={{ color: "red" }}>{props.errorMessage}</p>
