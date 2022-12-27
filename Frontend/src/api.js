@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const instance = 'backend-production-2ee6.up.railway.app'
+const instance = 'https://backend-production-2ee6.up.railway.app'
 
 export const productsAPI = {
     getTShirt(currentPage = 1, pageSize = 16, type) {
