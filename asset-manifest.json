@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/ScamMarket/static/css/main.49be59e4.css",
-    "main.js": "/ScamMarket/static/js/main.6a98f930.js",
+    "main.css": "/ScamMarket/static/css/main.3b583619.css",
+    "main.js": "/ScamMarket/static/js/main.71299199.js",
     "static/js/787.a86f3764.chunk.js": "/ScamMarket/static/js/787.a86f3764.chunk.js",
     "static/media/димыч.png": "/ScamMarket/static/media/димыч.eb693003d83892fc9764.png",
     "static/media/fi5swzcWN0c.jpg": "/ScamMarket/static/media/fi5swzcWN0c.1da6759642eedc48cc3e.jpg",
     "static/media/adidas-originals-seeklogo.com.svg": "/ScamMarket/static/media/adidas-originals-seeklogo.com.c370515b57a475c9608b718eff141874.svg",
     "static/media/ad-astra-seeklogo.com-3.svg": "/ScamMarket/static/media/ad-astra-seeklogo.com-3.77d39a487670e2033f58e7a7b8a782b6.svg",
-    "static/media/stone-island-com-seeklogo.com.svg": "/ScamMarket/static/media/stone-island-com-seeklogo.com.fb2873b267410b0e60400eb7493ceb95.svg",
+    "static/media/stone-island-com-seeklogo.com.svg": "/ScamMarket/static/media/stone-island-com-seeklogo.com.9f23c7649c40244759837f6e9b837e23.svg",
     "static/media/nike-react-seeklogo.com.svg": "/ScamMarket/static/media/nike-react-seeklogo.com.e31eac5c4eded957ffa74fb50fe971cd.svg",
     "static/media/logo.svg": "/ScamMarket/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "static/media/asics-seeklogo.com.svg": "/ScamMarket/static/media/asics-seeklogo.com.84c08cdf04f24f5531cff4316ab38e1d.svg",
@@ -15,12 +15,12 @@
     "static/media/ThridSlide.svg": "/ScamMarket/static/media/ThridSlide.f278269bf7bd60e0f4e16200d3abcd5b.svg",
     "static/media/SecondSlide.svg": "/ScamMarket/static/media/SecondSlide.4ba0cf79c5dc264e914cf4707dbf080e.svg",
     "static/media/FirstSlide.svg": "/ScamMarket/static/media/FirstSlide.43723f9af83c971d71d64f2552f817d5.svg",
-    "main.49be59e4.css.map": "/ScamMarket/static/css/main.49be59e4.css.map",
-    "main.6a98f930.js.map": "/ScamMarket/static/js/main.6a98f930.js.map",
+    "main.3b583619.css.map": "/ScamMarket/static/css/main.3b583619.css.map",
+    "main.71299199.js.map": "/ScamMarket/static/js/main.71299199.js.map",
     "787.a86f3764.chunk.js.map": "/ScamMarket/static/js/787.a86f3764.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.49be59e4.css",
-    "static/js/main.6a98f930.js"
+    "static/css/main.3b583619.css",
+    "static/js/main.71299199.js"
   ]
 }
