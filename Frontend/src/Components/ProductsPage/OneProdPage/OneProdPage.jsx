@@ -50,7 +50,7 @@ const OneProdPage = (props) => {
                     <Card style={{ width: '18rem', margin: 'auto' }}>
 
                         {props.selectedItem.picture ?
-                            <Card.Img variant="top" src={`https://serene-thicket-20705.herokuapp.com/${props.selectedItem.picture}`}
+                            <Card.Img variant="top" src={`https://backend-production-2ee6.up.railway.app/${props.selectedItem.picture}`}
                                 style={{ height: "18rem" }} />
                             : <div style={{ height: "18rem" }}><Preloader /></div>}
                     </Card>
